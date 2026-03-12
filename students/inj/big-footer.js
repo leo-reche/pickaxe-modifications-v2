@@ -191,18 +191,18 @@ function checkPricingRedirect() {
                 
                 // Set up abort handler if signal exists
                 const handleAbort = async () => {
-                  console.log("handleAbort");
-                  isAborted = true;
+                    console.log("handleAbort");
+                    isAborted = true;
 
-                  try {
-                    await reader.cancel();
-                  } catch (err) {
-                  }
+                    try {
+                        await reader.cancel();
+                    } catch (err) {
+                    }
 
-                  try {
-                    controller.close();
-                  } catch (err) {
-                  }
+                    try {
+                        controller.close();
+                    } catch (err) {
+                    }
                 };
                 
                 if (abortSignal) {
@@ -1194,5 +1194,3 @@ document.addEventListener('keydown', function(event) {
 });
 
 */
-
-
