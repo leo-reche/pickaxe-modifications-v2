@@ -5,8 +5,8 @@ const owner = "leo-reche";
 const repo = "pickaxe-modifications";
 const branch = "main";
 
-const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents/${hub}/files?ref=${branch}`;
-const fileBase = `https://leo-reche.github.io/pickaxe-modifications/${hub}/files/`;
+const apiBase = `https://api.github.com/repos/leo-reche/pickaxe-modifications-v2/contents/${hub}/files?ref=${branch}`;
+const fileBase = `https://leo-reche.github.io/pickaxe-modifications-v2/${hub}/files/`;
 
 async function getFiles(url) {
   const items = await fetch(url).then(r => r.json());
