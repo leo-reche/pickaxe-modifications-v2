@@ -1,0 +1,52 @@
+/* Remove Forward College Logo and name */
+span.text-\[20px\].max-\[1024px\]\:text-\[20px\].max-\[899px\]\:text-\[18px\].min-w-0.truncate.whitespace-nowrap.text-left.font-semibold.transition-all.duration-300.ease-in-out.max-\[859px\]\:max-w-full.ml-1.mr-3.max-w-\[200px\].opacity-100 {
+    display: none;
+}
+span.text-\[20px\].max-\[1024px\]\:text-\[20px\].max-\[899px\]\:text-\[18px\].min-w-0.truncate.whitespace-nowrap.text-left.font-semibold.transition-all.duration-300.ease-in-out.max-\[859px\]\:max-w-full.ml-0.max-w-0.opacity-0.group-hover\:ml-1.group-hover\:mr-3.group-hover\:max-w-\[200px\].group-hover\:opacity-100 {
+    display: none;
+}
+
+/* Remove padding from menu icon container */
+.flex.min-h-\[72px\].items-center.justify-between.gap-2.py-2.pl-6.pr-7.transition-colors.duration-500.max-\[859px\]\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Remove boxshadow from menu items */
+.glass{
+    box-shadow: none;
+}
+
+/* Scrollbar tighter */
+.custom-scrollbar.flex.min-h-0.flex-grow.flex-col.gap-4.overflow-y-auto.px-4.py-6 {
+    padding-top: 0px;
+    gap: 0.1rem;
+}
+
+/* Chat name bigger */
+@media (min-width: 768px) {
+    flex.items-center.gap-2.z-20.min-w-0.max-w-\[140px\].md\:max-w-\[200px\] {
+        max-width: 500px;
+    }
+}
+
+
+/* Make space for side menu
+
+.relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 350px;
+  z-index: 0;
+}
+
+.relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > *{
+  margin-left: 230px;
+  width: calc(100% - 230px);
+  position: relative;
+  z-index: 1;
+}
+*/

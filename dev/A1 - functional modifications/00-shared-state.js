@@ -1,0 +1,14 @@
+  // ================ DB Sync
+  
+  let formId = null;
+  let responseId = null;
+  let studioUserId = null;
+  let latestRequest = null;
+  let documents = null;
+  let wasStopped = false;
+  let pastedContent = [""];
+  let currentAbortController = null;
+  let currentSubmissionId = null; //This will store the Submission ID
+  let pendingStopRequest = false;
+  let blockNextStreamRequest = false;
+  

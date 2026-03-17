@@ -1,0 +1,1466 @@
+<div class="student-body">
+    <style>
+       
+        :root{
+      --bg:white;
+      --card:#ffffff;
+      --accent:#e85e34;
+      --fc-muted:#e85e34;
+      --muted-accent:#ffa78e;
+      --muted:#555;
+      --normal:#000;
+      --radius:24px;
+    }
+    .student-bevel{
+        min-height: 50dvh;
+        padding: 2rem 2rem;
+        margin: 40px 0;
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: 0 4px 12px rgba(10, 20, 40, 0.08);
+        border: 1px solid rgba(85, 85, 85, 0.1);
+    }
+    .bevel {
+        border-radius: var(--radius);
+        box-shadow: 0 4px 12px rgba(10, 20, 40, 0.08);
+        border: 1px solid rgba(85, 85, 85, 0.1); 
+        padding: 2rem 2rem;
+    }
+    .student-bevel-sm{
+        padding: 1rem 1rem;
+        margin: 20px 0;
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: 0 4px 12px rgba(10, 20, 40, 0.08);
+        border: 1px solid rgba(85, 85, 85, 0.1);
+    }
+    .pickaxe-trustus-h1{
+        font-family: Inter, 'Segoe UI', system-ui, Arial, sans-serif !important;
+      font-weight: 700 !important;
+      color: var(--normal);
+      margin: 0 0 clamp(16px, 2vw, 24px) 0;
+      line-height: 1.2;
+      font-size: clamp(1.35rem, 3vw + 0.5rem, 1.5rem);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    
+    .student-body *{box-sizing:border-box}
+    
+    .student-body a {
+      color: var(--accent)
+    }
+    .student-body{font-family:Inter,Segoe UI,system-ui,Arial,sans-serif;margin:0;color:#222}
+    .site-header{
+      min-height:calc(100vh - 80px);
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      padding:48px 16px;
+      background-image:url("https://pickaxe.co/resources/images/studio-hero/pickaxe-light-hero.jpg"),linear-gradient(to right,rgba(255,255,255,0.9),transparent);
+      background-position:left center;
+      background-size:cover;
+      background-blend-mode:overlay;
+      background-color: rgba(255, 255, 255, 0.2);
+      z-index: 1000;
+    }
+    .header-content{
+      max-width:632px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .site-header h1{
+      margin:0 0 16px 0;
+      font-size:56px;
+      font-weight:600;
+      line-height:5rem;
+      color:#000;
+    }
+    .site-header p{
+      margin:0 0 24px 0;
+      font-size:16px;
+      color:#000;
+      line-height:1.5;
+      width: 80%
+    }
+    .header-button{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:16px 32px;
+      background-color:#000;
+      color:#fff;
+      border:1px solid #000;
+      border-radius:var(--radius);
+      font-weight:600;
+      font-size:16px;
+      cursor:pointer;
+      width:fit-content;
+      transition:opacity 300ms ease;
+    }
+    .header-button:hover{
+      opacity:0.7;
+    }
+    .header-button:active{
+      opacity:1;
+    }
+    .container{max-width:1100px;margin:18px auto;padding:0 16px}
+    
+    /* Cards grid for desktop/tablet — same animation and style as staff */
+    .cards-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 14px;
+      margin-bottom: 12px;
+      align-items: start;
+      perspective: 1200px;
+    }
+    .card{
+      background: transparent;
+      border-radius: var(--radius);
+      width: 100%;
+      min-height: 0;
+      aspect-ratio: 1/1;
+      overflow: visible;
+      display: block;
+      perspective: 1000px;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12), 0 4px 12px rgba(232, 94, 52, 0.15);
+    }
+    .card-inner{
+      position: relative;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .card:hover .card-inner,
+    .card:focus-within .card-inner{
+      transform: rotateY(180deg);
+    }
+    .card-front,
+    .card-back{
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(10px, 1.5vw, 16px);
+      overflow: hidden;
+    }
+    .card-front{
+      box-shadow: 0 4px 10px rgba(20,30,60,0.06);
+      border: 1px solid rgba(85, 85, 85, 0.2);
+      background: white;
+      transition: border-color 0.2s ease;
+    }
+    .card:hover .card-front {
+      border-color: var(--accent);
+    }
+    .card-front h2{
+      margin: 0;
+      font-size: clamp(0.8rem, 1.8vw + 0.5rem, 1.05rem);
+      color: var(--normal);
+      font-weight: 600;
+      line-height: 1.3;
+      text-align: center;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+    .card-back{
+      background: white;
+      border: 1px solid var(--fc-muted);
+      transform: rotateY(180deg);
+      box-shadow: 0 8px 20px rgba(20,30,60,0.08);
+      color: var(--muted);
+      text-align: justify;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .card-back p{
+      margin: 0;
+      font-size: clamp(0.6rem, 1.2vw + 0.4rem, 0.7rem);
+      line-height: 1.5;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .card-back a{
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .card-back a:hover{
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+    
+    /* Mobile accordion */
+    .accordion{display:none;margin-bottom:24px}
+    .accordion-form{display:flex;flex-direction:column;gap:8px}
+    .accordion-form input[type="radio"]{display:none}
+    .accordion-form label{background:var(--card);padding:12px 14px;border-radius:8px;display:block;font-weight:600;color:var(--accent);box-shadow:0 2px 6px rgba(10,20,40,0.04);cursor:pointer;border:2px solid transparent;transition:border-color .25s ease, box-shadow .25s ease}
+    .accordion-form label:hover{border-color:var(--accent);}
+    .acc-panel{max-height:0;overflow:hidden;background:transparent;padding:0 12px;border-radius:0 0 8px 8px;transition:max-height .28s ease;color:var(--muted)}
+    .acc-panel p{margin:10px 0}
+    .accordion-form input[type="radio"]:checked + label + .acc-panel{max-height:420px}
+    
+    /* Policy area */
+    .further-resources-privacy details{background:var(--card);padding:0.5rem;box-shadow:0 2px 8px rgba(10,20,40,0.04); border: 1px solid rgba(85, 85, 85, 0.1);}
+    .further-resources-privacy summary{font-weight:700;cursor:pointer}
+    .further-resources-privacy pre{white-space:pre-line;margin-top:12px;color:var(--muted);font-size:0.9rem}
+    .further-resources-privacy{
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.75rem, 2vw, 1rem);
+        min-width: 0;
+    }
+    
+    /* Further Resources: top (left + right) — same styling as staff links */
+    .student-links-top{
+      display: flex;
+      flex-direction: row;
+      gap: clamp(0.75rem, 2vw, 1rem);
+      min-width: 0;
+    }
+    .student-links-bottom{
+            border-top: 1px solid rgba(85, 85, 85, 0.1);
+            min-width: 0;
+     }
+    .student-links-left{
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: clamp(1rem, 2vw, 2rem);
+    }
+    .student-links-right{
+      flex: 1;
+      min-width: 0;
+      border-left: 1px solid rgba(85, 85, 85, 0.1);
+      gap: clamp(1rem, 2vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .student-links-subtitle{
+      font-size: clamp(1rem, 1.2vw + 0.5rem, 1.2rem);
+      color: var(--normal);
+      margin: 0;
+      font-weight: 600;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .student-links-description{
+      font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem);
+      color: var(--normal);
+      margin: 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .student-links-description-link{
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .student-links-description-link:hover{
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+    .student-links-list{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .student-links-list-item{
+      display: flex;
+      flex-direction: row;
+      border: 1px solid rgba(85, 85, 85, 0.1);
+      border-left: 1px solid var(--accent);
+      padding: clamp(0.75rem, 1vw, 1rem);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      width: 100%;
+      min-width: 0;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .student-links-list-item .student-links-list-item-title{
+      min-width: 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      margin: 0;
+    }
+    .student-links-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 2rem;
+      border-radius: var(--radius);
+      border: 2px solid var(--accent);
+      background: white;
+      color: var(--accent);
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .student-links-btn .student-links-arrow{
+      font-size: 1.25rem;
+      color: var(--accent);
+      transition: color 0.2s ease;
+    }
+    .student-links-btn:hover{
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+    }
+    .student-links-btn:hover .student-links-arrow{
+      color: white;
+    }
+    .student-links-attention{
+      font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem);
+      color: var(--muted);
+      margin: 0;
+      font-weight: 600;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .student-links-policy-title{
+      font-size: clamp(1rem, 1.2vw + 0.5rem, 1.2rem);
+      color: var(--normal);
+      margin: 0 0 0.5rem 0;
+      font-weight: 600;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .student-links-policy-description{
+      font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem);
+      color: var(--muted);
+      margin: 0 0 1rem 0;
+      line-height: 1.5;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    
+    .site-footer{text-align:center;padding:18px 16px;color:var(--muted)}
+    .site-footer a{color:var(--accent);text-decoration:none}
+    
+    /* Student footer — same styling as staff trust center (class names: student-site-footer, student-member, etc.) */
+    .student-site-footer{
+      text-align: center;
+      padding: clamp(24px, 3vw, 32px) clamp(16px, 2vw, 24px);
+      color: var(--muted);
+      border-top: 1px solid rgba(85, 85, 85, 0.1);
+      min-width: 0;
+    }
+    .student-site-footer a{
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .student-site-footer a:hover{
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+    .student-site-footer-text{
+      color: var(--muted);
+      margin: 0;
+      font-weight: 600;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .student-site-footer-team{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: clamp(1rem, 2vw, 2rem);
+      gap: 1rem;
+      min-width: 0;
+    }
+    .student-site-member-card{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(85, 85, 85, 0.1);
+      border-radius: var(--radius);
+      padding: 1rem;
+      width: 80%;
+      height: 100%;
+    }
+    .student-member-name{
+      font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem);
+      color: var(--normal);
+      margin: 0;
+      font-weight: 600;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      text-align: center;
+    }
+    .student-member-title{
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+      font-weight: 700;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      text-align: center;
+    }
+    .student-member-contact{
+      font-size: clamp(0.75rem, 0.8vw + 0.4rem, 0.8rem);
+      color: var(--muted);
+      margin: 0;
+      font-weight: 400;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      text-align: center;
+    }
+    
+    /* Responsive rules */
+    /* Layout tuning for common breakpoints — aligned with staff card grid */
+    @media (min-width: 1100px){
+      .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+      }
+    }
+    @media (min-width: 1000px) and (max-width: 1099px){
+      .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 12px;
+      }
+    }
+    @media (min-width: 700px) and (max-width: 899px){
+      .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+      }
+    }
+    @media (max-width:1024px){
+      .site-header h1{
+        font-size:48px;
+        line-height:4rem;
+      }
+      .student-site-footer-team {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .student-site-member-card {
+        width: 100%;
+        max-width: 360px;
+      }
+      .student-bevel-sm {
+        height: auto;
+        min-height: auto;
+      }
+      .student-links-top{
+      display: flex;
+      flex-direction: row;
+      gap: clamp(0.75rem, 2vw, 1rem);
+      padding: clamp(0.75rem, 1.5vw, 1rem);
+      min-width: 0;
+    }
+
+      
+      .student-links-right {
+        border-left: none;
+        border-top: 1px solid rgba(85, 85, 85, 0.1);
+        padding-top: 1.5rem;
+      }
+    }
+    @media (max-width:899px){
+      .site-header h1{
+        font-size:28px;
+        line-height:2rem;
+      }
+      .header-button{
+        width:100%;
+        min-height:48px;
+      }
+    }
+    @media (max-width:1000px){
+      /* hide desktop cards, show accordion; hide SVG chart, show carousel */
+      .cards-grid{display:none}
+      .accordion{display:block}
+      .container{padding:0 12px}
+      .trust-chart .svg-container{display:none}
+      .student-flow-mobile{display:flex;align-items:stretch}
+      .chart-attention-desktop{display:none}
+      .chart-attention-mobile{display:block}
+    }
+    @media (max-width: 768px) {
+      .student-site-footer {
+        padding: 24px 16px;
+        font-size: 0.9rem;
+      }
+      .student-site-member-card {
+        max-width: 320px;
+      }
+      .student-bevel-sm {
+        height: auto;
+        min-height: auto;
+      }
+      .student-links-top {
+        flex-direction: column;
+      }
+      .student-links-right {
+        border-left: none;
+        border-top: 1px solid rgba(85, 85, 85, 0.1);
+        padding-top: 1.5rem;
+      }
+      .student-links-left,
+      .student-links-right {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .further-resources-privacy.student-bevel {
+        padding: 1rem 1.25rem;
+      }
+    }
+    
+    /* small touch affordance */
+    @media (hover:none){
+      .card{cursor:default}
+      .card-inner{transform:none !important}
+    }
+    
+    
+    /* Trust Chart / Flowchart Styles */
+    .trust-chart {
+      text-align: left;
+      position: relative;
+    }
+    
+    .hover-cards {
+      margin: 40px 0;
+      background: white;
+    }
+    
+    
+    .svg-pos{
+      margin-left: 60px;
+    }
+    
+    .trust-chart h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      color: var(--normal);
+    }
+    
+    .chart-attention-desktop, .chart-attention-mobile {
+      font-size: 1rem;
+      margin-top: -10px;
+      margin-bottom: 30px;
+      padding: 5px 30px;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      font-weight: 600;
+      box-sizing: content-box;
+      width: fit-content;
+      background-color: var(--card);
+      color: var(--accent);
+    }
+    .chart-attention-mobile { display: none; }
+    .chart-attention-desktop { display: block; }
+    
+    
+    
+    .flowchart-svg {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+    }
+    
+    .node-group {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .node-group:hover rect {
+      fill: #f5f5f5;
+      stroke: var(--accent);
+      stroke-width: 3;
+    }
+    
+    .node-group:hover text {
+      font-weight: bold;
+    }
+    
+    /* also support programmatic hover (class toggled from JS) */
+    .node-group.hovered rect {
+      fill: #f5f5f5;
+      stroke: var(--accent);
+      stroke-width: 3;
+    }
+    .node-group.hovered text {
+      font-weight: bold;
+    }
+    
+    .svg-tooltip {
+      position: fixed;
+      background: white;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--normal);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+      z-index: 1000;
+      pointer-events: none;
+      max-width: 320px;
+      word-wrap: break-word;
+      display: none;
+      white-space: normal;
+      animation: slideDown 0.2s ease-out;
+      background: linear-gradient(to bottom, white, #fafafa);
+    }
+    
+    .svg-tooltip::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid var(--accent);
+    }
+    
+    [data-tooltip] {
+      white-space: pre-line;
+    }
+    
+    
+    
+    
+    .svg-tooltip.visible {
+      display: block;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive for smaller screens */
+    @media (max-width: 900px) {
+      .trust-chart h2 {
+        font-size: 1.4rem;
+      }
+    }
+    
+    /* Student flow mobile: horizontal carousel (touch-friendly); describes SVG flow */
+    .student-flow-mobile {
+      display: none;
+      position: relative;
+      align-items: stretch;
+      padding: 0 0px;
+    }
+    
+    .student-flow-carousel-wrap {
+      flex: 1;
+      min-width: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      display: flex;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 12px 0;
+      gap: 1rem;
+      padding-left: 5dvw;
+      padding-right: 5dvw;
+
+    }
+    
+    /* Fade edges: cards appear to vanish and come back at the sides */
+    .student-flow-mobile::before,
+    .student-flow-mobile::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+     width: 10px;
+      max-width: 10vw;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .student-flow-mobile::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+    }
+    .student-flow-mobile::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+    }
+    
+    .student-flow-carousel-wrap::-webkit-scrollbar {
+      height: 6px;
+    }
+    
+    .student-flow-carousel-wrap::-webkit-scrollbar-thumb {
+      background: rgba(232, 94, 52, 0.3);
+      border-radius: 3px;
+    }
+    
+    .student-flow-carousel-card {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      flex: 0 0 80%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      border: 1px solid rgba(232, 94, 52, 0.25);
+      background: var(--card);
+      box-shadow: 0 2px 12px rgba(10, 20, 40, 0.06);
+    }
+    
+    .student-flow-carousel-title {
+      padding: 14px 16px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: clamp(0.875rem, 2vw + 0.75rem, 1.125rem);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 12px 12px 0 0;
+      flex-shrink: 0;
+    }
+    
+    .student-flow-carousel-title .student-flow-carousel-icon {
+      font-size: clamp(1.25rem, 3vw + 1rem, 1.5rem);
+      line-height: 1;
+    }
+    
+    .student-flow-carousel-desc {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      font-size: clamp(0.8125rem, 1.5vw + 0.7rem, 1rem);
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    
+    .student-flow-carousel-desc p {
+      margin: 0 0 0.5rem 0;
+    }
+    
+    .student-flow-carousel-desc p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .student-flow-carousel-arrow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      height: 24px;
+      width: 24px;
+      z-index: 2;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      background: var(--card);
+      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(0.875rem, 1.5vw + 0.6rem, 1.125rem);
+      line-height: 1;
+      transition: background 0.2s ease, color 0.2s ease, opacity 0.25s ease;
+    }
+    
+    .student-flow-carousel-arrow:hover {
+      background: var(--accent);
+      color: var(--card);
+    }
+    
+    .student-flow-mobile.is-scrolling .student-flow-carousel-arrow {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .student-flow-carousel-arrow.prev { left: 8px; }
+    .student-flow-carousel-arrow.next { right: 8px; }
+    
+    /* Show carousel when accordion is visible (must come after .student-flow-mobile base) */
+    @media (max-width: 1000px) {
+      .student-flow-mobile { display: flex; align-items: stretch; }
+    }
+    
+    .student-anonymisation-results{
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1.25rem, 4vw, 2rem);
+    }
+    .student-anonymisation-results-container{
+      display: flex;
+      flex-direction: row;
+      gap: clamp(1rem, 3vw, 20px);
+    }
+
+    .student-anonymisation-results-item{
+      flex: 1;
+      text-align: center;
+      border: 1px solid rgba(85, 85, 85, 0.1);
+      border-radius: var(--radius);
+      padding: clamp(0.75rem, 2vw, 1.25rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(10, 20, 40, 0.08);
+    }
+    .student-anonymisation-number{
+      font-size: clamp(2.25rem, 6vw + 1rem, 2rem);
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 clamp(0.25rem, 1vw, 0.5rem) 0;
+      text-align: center;
+      transform: translateX(10px);
+    }
+    .student-anonymisation-role{
+      font-size: clamp(1.125rem, 2vw + 0.75rem, 1.5rem);
+      font-weight: 600;
+      margin: 0 0 clamp(0.25rem, 1vw, 0.5rem) 0;
+    }
+    .student-anonymisation-description{
+      font-size: clamp(0.875rem, 1.2vw + 0.6rem, 1rem);
+      line-height: 1.45;
+      color: var(--muted);
+      margin: 0;
+    }
+    .student-anonymisation-attention{
+      font-size: clamp(0.875rem, 1.2vw + 0.6rem, 1rem);
+      color: var(--muted);
+      text-align: center;
+      margin-top: clamp(1.25rem, 3vw, 2rem);
+      padding: 0 0.5rem;
+    }
+    /* Anonymisation: column layout on narrow viewports — number left, role + description right */
+    @media (max-width: 700px) {
+      .student-anonymisation-results-container{
+        flex-direction: column;
+        gap: clamp(0.75rem, 2vw, 1rem);
+      }
+      .student-anonymisation-results-item{
+        flex: none;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 0.25rem clamp(1rem, 4vw, 1.25rem);
+      }
+      .student-anonymisation-number{
+        grid-column: 1;
+        grid-row: 1 / -1;
+        align-self: center;
+        margin: 0;
+        transform: none;
+        font-size: clamp(2rem, 8vw, 2.75rem);
+      }
+      .student-anonymisation-role{
+        grid-column: 2;
+        grid-row: 1;
+        margin: 0 0 0.15rem 0;
+        font-size: clamp(1rem, 2.5vw + 0.5rem, 1.25rem);
+      }
+      .student-anonymisation-description{
+        grid-column: 2;
+        grid-row: 2;
+        font-size: clamp(0.8125rem, 1.5vw + 0.5rem, 0.9375rem);
+        line-height: 1.4;
+      }
+    }
+    /* Anonymisation section: exclamation-in-circle tip + hover bubble */
+    .student-anonymisation-results{
+      position: relative;
+    }
+    .student-anonymisation-results-tip{
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: var(--card);
+      color: var(--accent);
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: help;
+      line-height: 1;
+      transition: background .2s ease, color .2s ease;
+    }
+    .student-anonymisation-results-tip:hover{
+      background: var(--accent);
+      color: var(--card);
+    }
+    .student-anonymisation-results-bubble{
+      position: absolute;
+      top: calc(1rem + 1.75rem + 8px);
+      right: 0;
+      min-width: 280px;
+      max-width: 360px;
+      padding: 1rem 1.25rem;
+      background: var(--card);
+      border: 1px solid rgba(85, 85, 85, 0.15);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(10, 20, 40, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: opacity .2s ease, visibility .2s ease, transform .2s ease;
+      z-index: 10;
+    }
+    .student-anonymisation-results-tip:hover + .student-anonymisation-results-bubble,
+    .student-anonymisation-results-bubble:hover{
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .student-anonymisation-results-bubble h2{
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--normal);
+    }
+    .student-anonymisation-results-bubble p{
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .student-anonymisation-results-bubble .bubble-eg{
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-family: ui-monospace, monospace;
+    }
+      </style>
+      <main class="container">
+        <!-- Data Flow Diagram -->
+         
+        <section class="trust-chart student-bevel">
+        <h1 class="pickaxe-trustus-h1">What is happening within the system..</h1>
+        <p class="chart-attention-desktop">Hover over the elements to learn more</p>
+        <p class="chart-attention-mobile">Scroll through the timeline to learn more</p>
+
+        <div class="student-flow-mobile" aria-label="Data flow steps">
+          <button type="button" class="student-flow-carousel-arrow prev" aria-label="Previous step">‹</button>
+          <button type="button" class="student-flow-carousel-arrow next" aria-label="Next step">›</button>
+          <div class="student-flow-carousel-wrap">
+              <article class="student-flow-carousel-card">
+                <div class="student-flow-carousel-title"><span class="student-flow-carousel-icon" aria-hidden="true">💬</span> User Requests</div>
+                <div class="student-flow-carousel-desc">
+                  <p>Your interaction with AI starts with a request.<br>E.g.: <br><strong>(Anna's request)</strong> <br>Please rephrase my email below: <br>Dear Joe, ... Best, Anna.</p>
+                </div>
+              </article>
+              <article class="student-flow-carousel-card">
+                <div class="student-flow-carousel-title"><span class="student-flow-carousel-icon" aria-hidden="true">⛏️</span> Pickaxe × AI Hub</div>
+                <div class="student-flow-carousel-desc">
+                  <p>The AI Hub (hosted by Pickaxe) receives your request, and forwards it to AI Providers (such as OpenAI, Google, etc). They are <strong>NOT</strong> allowed to use your conversations to train models. Pickaxe stores and processes your data in order to provide you with your chat history.</p>
+                </div>
+              </article>
+              <article class="student-flow-carousel-card">
+                <div class="student-flow-carousel-title"><span class="student-flow-carousel-icon" aria-hidden="true">😶‍🌫️</span> Pseudonymization</div>
+                <div class="student-flow-carousel-desc">
+                  <p>Before storing your request, your name is substituted with a generic user ID and information to separate your identity from your data.<br><br>E.g.: <br><strong>(USER12345, Cohort Y3, Psychology)</strong><br>Please rephrase my email below: Dear Joe, ... Best, Anna.</p>
+                </div>
+              </article>
+              <article class="student-flow-carousel-card">
+                <div class="student-flow-carousel-title"><span class="student-flow-carousel-icon" aria-hidden="true">☁️</span> Anonymizer</div>
+                <div class="student-flow-carousel-desc">
+                  <p>An automated system attempts to remove names, emails, phone numbers and other personal identifiers from your requests.<br><br>E.g.: <br><strong>(USER12345, Cohort Y3, Psychology)</strong><br>Please rephrase my email below: Dear &lt;NAME&gt;, … Best, &lt;NAME&gt;. <br><br><strong>This tool is not perfect.</strong> You should avoid sharing sensitive personal information through your requests.</p>
+                </div>
+              </article>
+              <article class="student-flow-carousel-card">
+                <div class="student-flow-carousel-title"><span class="student-flow-carousel-icon" aria-hidden="true">🏬</span> FC Database</div>
+                <div class="student-flow-carousel-desc">
+                  <p>The pseudonymized and anonymized conversation is stored in a secure database. Only three AI team administrators have access to this raw data and they are bound by confidentiality agreements.<br><br>Fellows, staff and the leadership teams do <strong>NOT</strong> have direct access to this database.</p>
+                </div>
+              </article>
+              <article class="student-flow-carousel-card">
+                <div class="student-flow-carousel-title"><span class="student-flow-carousel-icon" aria-hidden="true">📊</span> Dashboard</div>
+                <div class="student-flow-carousel-desc">
+                  <p>Your personal activity page. You can see your conversation history, usage statistics and activity on your personal dashboard. Only you have access to your dashboard.</p>
+                </div>
+              </article>
+              <article class="student-flow-carousel-card">
+                <div class="student-flow-carousel-title"><span class="student-flow-carousel-icon" aria-hidden="true">🔬</span> Research</div>
+                <div class="student-flow-carousel-desc">
+                  <p>Fellows and researchers affiliated with Forward College who have submitted well-defined research proposals may request approval to access select datasets for research purposes. Forward maintains strict ethical standards for these research activities, particularly those involving student conversations or interactions. Every day interactions with the AI hub <strong>will never be used</strong> to profile, grade or invigilate students.</p>
+                </div>
+              </article>
+          </div>
+        </div>
+          <!-- SVG placed directly in the section at its original size -->
+           <div class="svg-container">
+            <div class="svg-pos">
+          <svg id="flowchart-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600" class="flowchart-svg">
+              <!-- Nodes with hover groups -->
+              <g class="node-group" data-tooltip="Your interaction with AI starts with a request. E.g.: <br><br><strong class='bold'> (Anna's request) </strong><br> Please rephrase my email below:  <br> Dear Joe, ... <br> Best, Anna">
+                <rect x="50" y="50" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+                <text x="140" y="85" text-anchor="middle" font-size="30" font-weight="bold">💬</text>          
+                <text x="140" y="105" text-anchor="middle" font-size="14" font-weight="bold">User Requests</text>
+              </g>
+              
+              <g class="node-group" data-tooltip="The AI Hub (hosted by Pickaxe) receives your request, and forwards it to AI Providers (such as OpenAI, Google, etc).<br><br> They are <strong>NOT</strong> allowed to use your conversations to train models. Pickaxe stores and processes your data in order to provide you with your chat history.">
+                <rect x="350" y="50" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+                <text x="440" y="85" text-anchor="middle" font-size="30" font-weight="bold">⛏️</text>          
+                <text x="440" y="105" text-anchor="middle" font-size="14" font-weight="bold">Pickaxe x Forward AI Hub</text>          
+              </g>
+    
+              <g class="node-group" data-tooltip="Before storing your request, your name is substituted with a generic user ID and information to separate your identity from your data.<br> E.g.: <br><br><strong class='bold'> (USER12345, Cohort Y3, Psychology) </strong> <br> Please rephrase my email below: <br> Dear Joe, ... <br> Best, Anna">
+                <rect x="650" y="50" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+                <text x="740" y="85" text-anchor="middle" font-size="30" font-weight="bold">😶‍🌫️</text>          
+                <text x="740" y="105" text-anchor="middle" font-size="14" font-weight="bold">Pseudonymization</text>
+              </g>
+              
+              <g class="node-group" data-tooltip="Next, an automated system attempts to remove names, emails, phone numbers and other personal identifiers from your requests. <br> E.g.: <br><br><strong class='bold'> (USER12345, Cohort Y3, Psychology) </strong> <br> Please rephrase my email below: <br> Dear <NAME>, … <br> Best, <NAME>. <br><br>
+
+
+                <strong>This tool is not perfect.</strong> You should avoid sharing sensitive personal information through your requests.
+                ">
+                <rect x="650" y="220" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+                <text x="740" y="255" text-anchor="middle" font-size="30" font-weight="bold">☁️</text>          
+                <text x="740" y="275" text-anchor="middle" font-size="14" font-weight="bold">Anonymizer</text>
+              </g>
+              
+              <g class="node-group" data-tooltip="
+              The pseudonymized and anonymized conversation is stored in a secure database. Only three AI team administrators have access to this raw data and they are bound by confidentiality agreements.<br><br> Fellows, staff and the leadership teams do <strong>NOT</strong> have direct access to this database.">
+                <rect x="350" y="220" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+                <text x="440" y="255" text-anchor="middle" font-size="25" font-weight="bold">🏬</text>          
+                <text x="440" y="275" text-anchor="middle" font-size="14" font-weight="bold">FC Database</text>
+              </g>
+              
+              <g class="node-group" data-tooltip="Your personal activity page. You can see your conversation history, usage statistics and activity on your personal dashboard. <br><br>Only you have access to your dashboard.">
+                <rect x="150" y="390" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+                <text x="240" y="425" text-anchor="middle" font-size="30" font-weight="bold">📊</text>          
+                <text x="240" y="445" text-anchor="middle" font-size="14" font-weight="bold">Dashboard</text>
+              </g>
+              
+              <g class="node-group" data-tooltip="Fellows and researchers affiliated with Forward College who have submitted well-defined research proposals may request approval to access select datasets for research purposes. <br><br> Forward maintains strict ethical standards for these research activities, particularly those involving student conversations or interactions. <br><br> Every day interactions with the AI hub <strong>will never be used</strong> to profile, grade or invigilate students.">
+                <rect x="550" y="390" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+                <text x="640" y="425" text-anchor="middle" font-size="30" font-weight="bold">🔬</text>          
+                <text x="640" y="445" text-anchor="middle" font-size="14" font-weight="bold">Research Datasets</text>
+              </g>
+              
+              <!-- Arrows -->
+              <!-- User to Pickaxe -->
+              <path d="M 230 100 L 350 100" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+              <text x="255" y="95" font-size="11" fill="#e85e34" font-weight="bold">Processing</text>
+              
+              <!-- Pickaxe to Pseudonymization -->
+              <path d="M 530 90 L 650 90" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+              <text x="555" y="85" font-size="11" fill="#e85e34" font-weight="bold">Anonymizing</text>
+              
+              <!-- Pickaxe to User (return) -->
+              <path d="M 350 70 L 230 70" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+              <text x="275" y="65" font-size="11" fill="#e85e34" font-weight="bold">Return</text>
+              
+              <!-- Pseudonymization to Anonymizer -->
+              <path d="M 740 130 L 740 220" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+              <text x="750" y="170" font-size="11" fill="#e85e34" font-weight="bold">Redacting</text>
+              
+              <!-- Anonymizer to FC Database -->
+              <path d="M 650 260 L 530 260" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+              <text x="585" y="255" font-size="11" fill="#e85e34" font-weight="bold">Storing</text>
+              
+              <!-- FC Database to Dashboard -->
+              <path d="M 430 300 Q 400 330 330 390" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+              <text x="335" y="330" font-size="11" fill="#e85e34" font-weight="bold">Accessing</text>
+              
+              <!-- FC Database to Joint Database -->
+              <path d="M 440 300 L 550 390" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+              <text x="490" y="330" font-size="11" fill="#e85e34" font-weight="bold">For Research</text>
+              
+              <!-- Arrow marker definition -->
+              <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                  <polygon points="0 0, 10 3, 0 6" fill="#e85e34"/>
+                </marker>
+              </defs>
+            </svg>
+            <!-- Tooltip container -->
+            <div id="svg-tooltip" class="svg-tooltip"></div>
+          <!-- end trust-chart svg -->
+           </div>
+           </div>
+         </section>
+    
+       <section class="student-anonymisation-results student-bevel">
+        <span class="student-anonymisation-results-tip" aria-label="Pay attention matters">!</span>
+        <div class="student-anonymisation-results-bubble" role="tooltip">
+          <h2>Attention matters!</h2>
+          <p>According to our tests, the anonymizer is performing 65% better in identifying personal information when words are properly segmented.</p>
+          <p class="bubble-eg">E.g:<br>I'm writing toJohn vs. I'm writing to John.</p>
+        </div>
+        <h1 class="pickaxe-trustus-h1">How well our anonymisation engine performs in tests... </h1>
+        <div class="student-anonymisation-results-container">
+          <article class="student-anonymisation-results-item">
+            <h2 class="student-anonymisation-number">~93%</h2>
+            <p class="student-anonymisation-role">Accurate</p>
+            <p class="student-anonymisation-description">For every 100 pieces of personal information found in messages, ~93 are correctly identified and anonymized.</p>
+          </article>
+          <article class="student-anonymisation-results-item">
+            <h2 class="student-anonymisation-number">&gt99%</h2>
+            <p class="student-anonymisation-role">Reliable</p>
+            <p class="student-anonymisation-description">If we attempt to anonymize a same message 100 times, in over 99 of them, the results will be exactly the same.</p>
+          </article>
+          <article class="student-anonymisation-results-item">
+            <h2 class="student-anonymisation-number">100%</h2>
+            <p class="student-anonymisation-role">Secure</p>
+            <p class="student-anonymisation-description">100% of messages get annonymized in-house before being further processed or stored</p>
+          </article>
+        </div>
+        <h2 class="student-anonymisation-attention"> At Forward, we do our best to protect your privacy, but no system is completely risk-free. As with any other AI tool at your disposal, the safest approach is always to avoid sharing sensitive personal information.</h2>
+       </section>
+    
+        <section class="hover-cards student-bevel" aria-label="Key privacy points">
+        <h1 class="pickaxe-trustus-h1">Frequently Asked Questions</h1>
+        <div class="cards-grid" >
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>1. What is the AI Hub?</h2>
+              </div>
+              <div class="card-back">
+                <p>The AI Hub is a platform, provided by Forward through a provider (<a href="https://pickaxe.co" target="_blank">Pickaxe</a>), to make AI and custom bots available to students.</p>
+              </div>
+            </div>
+          </article>
+    
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>2. Do I have to use the AI Hub?</h2>
+              </div>
+              <div class="card-back">
+                <p>No, usage of the AI Hub is optional. The AI Hub is available for all students, but students are also encouraged to use AI responsibly, and to explore other AI tools that best support their academic learning and tasks.</p>
+              </div>
+            </div>
+          </article>
+    
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>3. How do I get an account?</h2>
+              </div>
+              <div class="card-back">
+                <p>To get access you must create an account with your Forward email account and fill a <a href="https://docs.google.com/forms/d/e/1FAIpQLSdL3nHExnwSg_pDYfDgwK1-3yy_h7VuINgkR7bR9xxxWoYYzg/viewform?usp=header" target="_blank">Consent Form</a> acknowledging that Forward stores and processes your data according to this Trust Center and the Privacy Policy.<br><br>Within 48 hours a member of our staff will verify your email and your account will be activated. </p>
+              </div>
+            </div>
+          </article>
+    
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>4. Is there a limit to how many messages I can send?</h2>
+              </div>
+              <div class="card-back">
+                <p>Until we can verify that you are a student and that you gave consent to the collection and processing of your data, your account will be limited to 10 messages.<br><br>After your account is activated you will be able to send unlimited messages.</p>
+              </div>
+            </div>
+          </article>
+    
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>5. Can I use the AI Hub for assignments?</h2>
+              </div>
+              <div class="card-back">
+                <p>The AI Hub is intended for supporting your learning. Using work generated by the AI Hub or by any other AI models in assignments instead of original work is considered plagiarism and strictly forbidden, unless authorized by your fellow and declared using the self-declaration form.<br><br>Read more on the <a href="https://docs.google.com/document/d/1HLPdzXSpR-xulDhJIx3Q_SU_6l8HTqizUs5DPL3AQgM/edit?tab=t.0" target="_blank">Academic Integrity Policy</a>.</p>
+              </div>
+            </div>
+          </article>
+    
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>6. Does Forward have access to my messages?</h2>
+              </div>
+              <div class="card-back">
+                <p>Your conversations are stored by Forward, anonymized and automatically cleaned of personal details (see the sections above for further details). 
+                <br><br>We use your anonymized data to provide you with your usage dashboard, and for well-defined research innitiatives, which you can consult on demand, by emailing <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a>.         
+                <br><br>Staff members and your fellows do not have access to your unnanonimized messages, and we will never use your AI Hub usage to monitor, profile, grade or invigilate you.</p>
+              </div>
+            </div>
+          </article>
+    
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>7. Who can see my data?</h2>
+              </div>
+              <div class="card-back">
+                <p>Only a small team of AI administrators who are bound by confidentiality agreements can see your data.<br><br>No one with authority over you will get access to your personal data. Researchers and staff only get access to aggregate data (counts, averages, etc.) or to anonymized conversations.</p>
+              </div>
+            </div>
+          </article>
+    
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>8. Why do you need my data?</h2>
+              </div>
+              <div class="card-back">
+                <p>Your data helps us maintain and improve the AI Hub, develop new bots, through aggreagte and anonymised data understand how students are leveraging AI for studies and investigate how to make this new technology better to support you in your studies.
+                    <br><br>
+                    We also use your data to provide you with your personal usage dashboard, and to drive cutting-edge research at Forward on the effective use of AI in education.</p>
+              </div>
+            </div>
+          </article>
+    
+          <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>9. What control do I have?</h2>
+              </div>
+              <div class="card-back">
+                <p>You have full control: see your data, correct it, delete it, or stop us from using it. <br><br>Email <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a> to exercise any of these rights. <br><br>You can also contact the AI Team directly by emailing <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a>.</p>
+              </div>
+            </div>
+          </article>
+    
+         <!-- <article class="card" tabindex="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <h2>10. How will I know about policy changes?</h2>
+              </div>
+              <div class="card-back">
+                <p>We'll let you know about any important changes through email or notifications. You can always find the latest policy on the Hub.</p>
+              </div>
+            </div>
+          </article> -->
+        </div>
+        <div class="accordion" aria-label="Key privacy points (mobile)">
+            <form class="accordion-form" aria-hidden="true">
+              <input type="radio" name="acc" id="acc1">
+              <label for="acc1">1. What is the AI Hub?</label>
+              <div class="acc-panel">
+                <p>The AI Hub is a platform, provided by Forward through a provider (<a href="https://pickaxe.co" target="_blank">Pickaxe</a>), to make AI and custom bots available to students.</p>
+              </div>
+  
+              <input type="radio" name="acc" id="acc2">
+              <label for="acc2">2. Do I have to use the AI Hub?</label>
+              <div class="acc-panel">
+                <p>No, usage of the AI Hub is optional. The AI Hub is available for all students, but students are also encouraged to use AI responsibly, and to explore other AI tools that best support their academic learning and tasks.</p>
+              </div>
+  
+              <input type="radio" name="acc" id="acc3">
+              <label for="acc3">3. How do I get an account?</label>
+              <div class="acc-panel">
+                <p>To get access you must create an account with your Forward email account and fill a <a href="https://docs.google.com/forms/d/e/1FAIpQLSdL3nHExnwSg_pDYfDgwK1-3yy_h7VuINgkR7bR9xxxWoYYzg/viewform?usp=header" target="_blank">Consent Form</a> acknowledging that Forward stores and processes your data according to this Trust Center and the Privacy Policy.<br><br>Within 48 hours a member of our staff will verify your email and your account will be activated. </p>
+              </div>
+  
+              <input type="radio" name="acc" id="acc4">
+              <label for="acc4">4. Is there a limit to how many messages I can send?</label>
+              <div class="acc-panel">
+                <p>Until we can verify that you are a student and that you gave consent to the collection and processing of your data, your account will be limited to 10 messages.<br><br>After your account is activated you will be able to send unlimited messages.</p>
+              </div>
+  
+              <input type="radio" name="acc" id="acc5">
+              <label for="acc5">5. Can I use the AI Hub for assignments?</label>
+              <div class="acc-panel">
+                <p>The AI Hub is intended for supporting your learning. Using work generated by the AI Hub or by any other AI models in assignments instead of original work is considered plagiarism and strictly forbidden, unless authorized by your fellow and disclosed.<br><br>Read more on the <a href="https://docs.google.com/document/d/1HLPdzXSpR-xulDhJIx3Q_SU_6l8HTqizUs5DPL3AQgM/edit?tab=t.0" target="_blank">Academic Integrity Policy</a>.</p>
+              </div>
+  
+              <input type="radio" name="acc" id="acc6">
+              <label for="acc6">6. Does Forward have access to my messages?</label>
+              <div class="acc-panel">
+                <p>Your conversations are stored by Forward, anonymized and automatically cleaned of personal details (see the sections above for further detials).
+                  <br><br>We use your anonymized data to provide you with your usage dashboard, and for well-defined research innitiatives, which you can consult on demand, by emailing <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a>.
+                  <br><br>Staff members and your fellows do not have access to your unanonimized messages, and we will never use your AI Hub usage to monitor, profile, grade or invigilate you.</p>
+              </div>
+  
+              <input type="radio" name="acc" id="acc7">
+              <label for="acc7">7. Who can see my data?</label>
+              <div class="acc-panel">
+                <p>Only a small team of AI administrators who are bound by confidentiality agreements can see your data.<br><br>No one with authority over you will get access to your personal data. Researchers and staff only get access to aggregate data (counts, averages, etc.) or to anonymized conversations.</p>
+              </div>
+  
+              <input type="radio" name="acc" id="acc8">
+              <label for="acc8">8. Why do you need my data?</label>
+              <div class="acc-panel">
+                <p>Your data helps us maintain and improve the AI Hub, develop new bots, through aggreagte and anonymised data understand how students are leveraging AI for studies and investigate how to make this new technology better to support you in your studies.
+                      <br><br>
+                      We also use your data to provide you with your personal usage dashboard, and to drive cutting-edge research at Forward on the effective use of AI in education.</p>
+              </div>
+  
+              <input type="radio" name="acc" id="acc9">
+              <label for="acc9">9. What control do I have?</label>
+              <div class="acc-panel">
+                <p>You have full control: see your data, correct it, delete it, or stop us from using it. <br><br>Email <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a> to exercise any of these rights. <br><br>You can also contact the AI Team directly by emailing <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a>.</p>
+              </div>
+  
+             <!-- <input type="radio" name="acc" id="acc10">
+              <label for="acc10">10. How will I know about policy changes?</label>
+              <div class="acc-panel">
+                <p>We'll let you know about any important changes through email or notifications. You can always find the latest policy on the Hub.</p>
+              </div> -->
+            </form>
+          </div>
+        </section>
+        
+    
+        <section class="further-resources-privacy student-bevel">
+        <h1 class="pickaxe-trustus-h1">Further Resources & Privacy</h1>
+        <div class="student-links-top">
+            <div class="student-links-left bevel">
+                <h2 class="student-links-subtitle">Pickaxe AI</h2>
+                <p class="student-links-description">Our AI provider (<a class="student-links-description-link" href="https://pickaxe.co" target="_blank">pickaxe.co</a>) collects and stores messages and usage data to run the service. How they use that data is set out in the policies below.</p>
+                <div class="student-links-list">
+                    <div class="student-links-list-item">
+                        <p class="student-links-list-item-title">Pickaxe Terms of Service</p>
+                        <a href="https://pickaxe.co/terms" target="_blank" class="student-links-btn"><span class="student-links-arrow" aria-hidden="true">➜</span></a>
+                    </div>
+                    <div class="student-links-list-item">
+                        <p class="student-links-list-item-title">Pickaxe Privacy Policy</p>
+                        <a href="https://pickaxe.co/privacy" target="_blank" class="student-links-btn"><span class="student-links-arrow" aria-hidden="true">➜</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="student-links-right bevel">
+                <h2 class="student-links-subtitle">Custom Code Injection</h2>
+                <p class="student-links-description">The AI Team adds small code enhancements to the AI Hub (e.g. edit a message, press Enter to send). For transparency, the repository for these snippets is linked below.</p>
+                <div class="student-links-list">
+                    <div class="student-links-list-item">
+                        <p class="student-links-list-item-title">Repository of code snippets</p>
+                        <a href="https://github.com/leo-reche/pickaxe-modifications" target="_blank" class="student-links-btn"><span class="student-links-arrow" aria-hidden="true">➜</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <div class="student-links-bottom bevel">
+            <h2 class="student-links-policy-title">Forward College AI Hub – Usage and Data Processing Policy</h2>
+            <p class="student-links-policy-description">Below you can find the full policy text for the AI Hub.</p>
+            <details>
+                <summary>Full policy text (August 2025)</summary>
+                <pre>
+        Forward College AI Hub – Usage and Data Processing Policy
+        August 2025
+        
+        1. Introduction and Scope
+        This policy outlines how the AI Hub at Forward College may be used and how all associated data is processed. It applies to all users of the Student's AI Hub. It is designed to supplement Forward College’s core Data Protection Policy, Students’ Privacy Notice, and GDPR Policy.
+        
+        The “AI Hub” refers to the conjunction of artificial intelligence resources and tools provided by Forward College and, accessible through the AI Hub web platform (ai.forward-college.eu). This may include conversational chatbots using Large Language Models (LLMs) provided by third-party companies (such as OpenAI, Claude, Google, etc.), specific assistants with access to tools and resources developed by Forward College, automations and actions associated with those bots, productivity and research tools, usage dashboards  and other AI-powered applications. It also encompasses integrated third-party services such as Pickaxe, Firebase and Google Cloud, which provide the underlying infrastructure for certain features.
+        
+        2. Consent and Account Activation
+        By using the AI Hub, you acknowledge and consent to your data being processed according to this policy and all related Forward College data protection policies.
+        In order to get their account activated, students must register their consent and interest through the Consent Form. Each application will be reviewed by a member of the team which will then activate account.
+        
+        3. Acceptable Use
+        The AI Hub is intended for educational, research, and official administrative purposes related to Forward College, as well as to support students in their daily academic tasks, learning activities, and overall educational development. It is also designed to help students better understand and use AI responsibly, fostering awareness of best practices in AI usage. 
+        Users are prohibited from engaging in unlawful activities, attempts to bypass security measures, or creating and uploading disallowed content. All uploaded materials must comply with the Code of Conduct, meaning users must not submit infringing or unauthorized third-party content. In addition, any content generated through the AI Hub must adhere to the guidelines for generative AI usage outlined in the Plagiarism Policy. Using the AI Hub to produce assessment responses is strictly prohibited unless explicit permission has been granted.
+        
+        4. Data Collection
+        The following data may be collected:
+        Account details: Name, email.
+        Interaction data: Prompts, responses, conversation history and pasted content.
+        Uploaded content: Any files (documents, images) submitted to the Hub.
+        Technical data: IP address, browser/device info.
+        Data is collected at login, during usage, upon file upload, and via integrations.
+        
+        5. Pseudonymization and Interaction Privacy
+        All conversation data is pseudonymized, meaning any personal identifiers are replaced with anonymous user IDs, for storage and processing. Conversations are logged based on these IDs and associated names and email addresses are decoupled upon collection.
+        Conversations are further anonymized by an automated anonymization algorithm which removes email addresses and names from conversations. (Data Protection Policy, GDPR Principle 3: Data Minimisation).
+        Your personal AI Hub activity data is private available only to you via your personal dashboard.
+        The anonymous data collected might be coupled with academic and information such as major, courses taken and grades.
+        Staff and fellows will only have access through a formal request to the AI Team, upon presentation of legitimate interest, precautions and ethical considerations.
+        
+        6. Data Sharing and Access
+        Access to the raw data and processing will always be restricted to up to three AI Hub administrators, members of the AI Team, who hold no authority over students.
+        All of the administrators with access to the data storage and processing, must sign NDA's with Forward College, strictly prohibiting sharing of any information contained in the data.
+        Only pseudonymized data is available to the AI development team and for improvement of services. The matching sheet and conversion process is confidential, kept protected and separate from the main data.
+        Data may be shared with external processors (e.g., cloud providers, LLM providers, Pickaxe), as permitted by policy and law, and always under strict agreements DPAs (Students’ Privacy Notice, “What information do we share and with whom?”).
+        
+        7. Usage of the data
+        The data collected might be used for
+        Conducting research to understand how AI can best support student learning and engagement.
+        Improving, testing, and further developing the AI Hub to enhance functionality, reliability, and accessibility.
+        Creating and maintaining student dashboards to help learners track and reflect on their AI usage and learning progress.
+        Monitoring and improving the quality, accuracy, and fairness of AI responses.
+        Supporting the development of new educational tools, resources, and features that benefit students and faculty.
+        Ensuring system security.
+        Performing anonymized or aggregated analytics to identify usage trends and inform institutional decision-making.
+        Routine AI Hub interactions are never used for evaluation, academic progression decisions, or profiling (Data Protection Policy, GDPR Principle 2 & 3). Assessments including AI will be communicated to students beforehand.
+        AI Hub interactions are not used for model training by any of the external processors and LLM providers, as per Data Processing Agreements signed between Forward and them.
+        
+        8. Storage Location and Retention
+        Forward stores data securely on servers within the European Union.
+        Retention period: Personal data is retained only as long as necessary; anonymized usage data may be kept for statistical purposes (Data Protection Policy, GDPR Principle 5: Storage Limitation).
+        
+        9. User Rights
+        Under GDPR and Forward College policies, you have rights to:
+        Access, rectify, or delete your data.
+        Restrict or object to certain processing.
+        Data portability.
+        Withdraw consent at any time, where applicable. To exercise these rights, contact the AI Team at ai@forward-college.eu
+        
+        10. Policy Changes
+        We will notify users of material changes to this policy via banner, email, or in-app notice. The latest version will always be available for consultation on the AI Hub and on the Intranet.
+                </pre>
+            </details>
+        </div>
+        </section>
+
+        <div class="site-footer student-site-footer student-bevel-sm">
+            <p class="student-site-footer-text">Questions? Contact the AI Team!</p>
+            <div class="student-site-footer-team">
+                <article class="student-site-member-card">
+                    <div class="student-member-name">Devlin Lewis</div>
+                    <div class="student-member-title">Head of Acquisition and Data</div>
+                    <div class="student-member-contact"><a href="mailto:devlin.lewis@forward-college.eu">devlin.lewis@forward-college.eu</a></div>
+                </article>
+                <article class="student-site-member-card">
+
+                    <div class="student-member-name">Leonardo Reche</div>
+                    <div class="student-member-title">AI & Automations Associate</div>
+                    <div class="student-member-contact"><a href="mailto:leonardo.reche@forward-college.eu">leonardo.reche@forward-college.eu</a></div>
+                </article>
+            </div>
+        </div>
+    
+      </main>
+    
+      
+
+     
+    </div>
+    
+    
+    

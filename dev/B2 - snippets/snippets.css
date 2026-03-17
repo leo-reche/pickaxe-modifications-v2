@@ -1,0 +1,109 @@
+#sp-snippet-bar[hidden]{ display:none; }
+  #sp-snippet-bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:6px 2px 8px;
+    align-items:center;
+  }
+  .sp-sn-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid rgba(0,0,0,.12);
+    border-radius:999px;
+    padding:6px 10px;
+    background:#fff;
+    font: 13px/1.1 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    color:#111;
+  }
+  .sp-sn-chip b{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    font-weight:700;
+  }
+  .sp-sn-chip button{
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    padding:0;
+    line-height:0;
+    opacity:.55;
+  }
+  .sp-sn-chip button:hover{ opacity:.9; }
+
+  #sp-snippet-pop[hidden]{ display:none; }
+  #sp-snippet-pop{
+    position: fixed;
+    z-index: 999999;
+    min-width: 220px;
+    max-width: 320px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.12);
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    padding:6px;
+    font:14px/1.25 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    color:#111;
+  }
+  #sp-snippet-pop .sp-sn-title{
+    font-size:12px;
+    opacity:.6;
+    padding:6px 8px 4px;
+  }
+  #sp-snippet-pop .sp-sn-item{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    width:100%;
+    border:0;
+    background:transparent;
+    padding:8px;
+    border-radius:8px;
+    cursor:pointer;
+    text-align:left;
+  }
+  #sp-snippet-pop .sp-sn-item:hover,
+  #sp-snippet-pop .sp-sn-item[aria-selected="true"]{
+    background: rgba(0,0,0,.06);
+  }
+  #sp-snippet-pop .sp-sn-slash{
+    font-weight:700;
+    font-size:15px;
+    min-width:110px;
+    white-space:nowrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,"Liberation Mono","Courier New", monospace;
+  }
+  #sp-snippet-pop .sp-sn-desc{
+    font-size:12px;
+    opacity:.7;
+    margin-top:2px;
+  }
+
+  /* bubble snippets: style both sp-* and fb-* */
+  .sp-snippets, .fb-snippets{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:8px;
+  }
+  .sp-snippet, .fb-snippet{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+    background:rgba(0,0,0,.06);
+    border:1px solid rgba(0,0,0,.12);
+    color:#333;
+    white-space:nowrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,"Liberation Mono","Courier New", monospace;
+  }
+
+.sp-sn-chip.is-selected{
+  background: rgba(0,0,0,.10);
+  border-color: rgba(0,0,0,.28);
+}
+.sp-sn-chip.is-selected button{
+  opacity: .95;
+}
