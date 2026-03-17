@@ -129,7 +129,6 @@ span.text-\[20px\].max-\[1024px\]\:text-\[20px\].max-\[899px\]\:text-\[18px\].mi
 }
 
 
-
 /* ===== Make space for side menu  ====== */
 
 .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before,
@@ -157,6 +156,17 @@ body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow
   z-index: 1;
 }
 
+@media (max-width: 1250px) {
+  body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before {
+    width: 450px;
+  }
+
+  body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > * {
+    margin-left: 320px;
+    width: calc(100% - 320px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before,
   .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > * {
@@ -165,7 +175,7 @@ body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow
 }
 
 
-/*
+/* 
 
 body:not(.fc-sidebar-open) .glass-dynamic.group.fixed.left-0.top-0.z-\[100100\].m-4.flex.flex-col.overflow-hidden.max-\[859px\]\:m-0.max-\[859px\]\:rounded-none.max-\[859px\]\:border-0.max-\[859px\]\:shadow-none {
   max-width: 317px;
