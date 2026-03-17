@@ -410,3 +410,69 @@ document.addEventListener('keydown', function(event) {
 */
 
 
+
+
+
+// Is the sidebar open?
+
+function getSidebarEl() {
+  return document.querySelector(
+    'div.glass-dynamic.group.fixed.left-0.top-0.z-\\[100100\\].m-4.flex.flex-col.overflow-hidden.max-\\[859px\\]\\:m-0.max-\\[859px\\]\\:rounded-none.max-\\[859px\\]\\:border-0.max-\\[859px\\]\\:shadow-none'
+  );
+}
+
+function isSidebarOpen() {
+  const sidebar = getSidebarEl();
+  if (!sidebar) return false;
+
+  const style = sidebar.getAttribute('style') || '';
+  return style.includes('height: calc(-48px + 100dvh)') && style.includes('width: 317px');
+}
+
+function updateSidebarShift() {
+  document.body.classList.toggle('fc-sidebar-open', isSidebarOpen());
+}
+
+function observeSidebarState() {
+  let sidebarObserver = null;
+
+  function bindToSidebar() {
+    const sidebar = getSidebarEl();
+
+    if (!sidebar) {
+      document.body.classList.remove('fc-sidebar-open');
+      return;
+    }
+
+    if (sidebarObserver) sidebarObserver.disconnect();
+
+    updateSidebarShift();
+
+    sidebarObserver = new MutationObserver(() => {
+      updateSidebarShift();
+    });
+
+    sidebarObserver.observe(sidebar, {
+      attributes: true,
+      attributeFilter: ['style']
+    });
+  }
+
+  bindToSidebar();
+
+  const pageObserver = new MutationObserver(() => {
+    const sidebar = getSidebarEl();
+    if (sidebar && (!sidebarObserver || !sidebar.isConnected)) {
+      bindToSidebar();
+    } else if (!sidebar) {
+      document.body.classList.remove('fc-sidebar-open');
+    }
+  });
+
+  pageObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+}
+
+observeSidebarState();
