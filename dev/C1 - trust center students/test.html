@@ -1,0 +1,1024 @@
+<body>
+<style>
+   
+    :root{
+  --bg:white;
+  --card:#ffffff;
+  --accent:#e85e34;
+  --fc-muted:#e85e34;
+  --muted-accent:#ffa78e;
+  --muted:#555;
+  --normal:#000;
+  --radius:24px;
+}
+
+*{box-sizing:border-box}
+
+a {
+  color: var(--accent)
+}
+body{font-family:Inter,Segoe UI,system-ui,Arial,sans-serif;margin:0;background:var(--bg);color:#222}
+.site-header{
+  min-height:calc(100vh - 80px);
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:48px 16px;
+  background-image:url("https://pickaxe.co/resources/images/studio-hero/pickaxe-light-hero.jpg"),linear-gradient(to right,rgba(255,255,255,0.9),transparent);
+  background-position:left center;
+  background-size:cover;
+  background-blend-mode:overlay;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+}
+.header-content{
+  max-width:632px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.site-header h1{
+  margin:0 0 16px 0;
+  font-size:56px;
+  font-weight:600;
+  line-height:5rem;
+  color:#000;
+}
+.site-header p{
+  margin:0 0 24px 0;
+  font-size:16px;
+  color:#000;
+  line-height:1.5;
+  width: 80%
+}
+.header-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:16px 32px;
+  background-color:#000;
+  color:#fff;
+  border:1px solid #000;
+  border-radius:var(--radius);
+  font-weight:600;
+  font-size:16px;
+  cursor:pointer;
+  width:fit-content;
+  transition:opacity 300ms ease;
+}
+.header-button:hover{
+  opacity:0.7;
+}
+.header-button:active{
+  opacity:1;
+}
+.container{max-width:1100px;margin:18px auto;padding:0 16px}
+
+/* Cards grid for desktop/tablet */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:4px;margin-bottom:12px;align-items:start}
+.card{
+    background:transparent;border-radius:var(--radius);width:100%;aspect-ratio:1/1;overflow:hidden;display:block;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+.card-inner{position:relative;inset:0;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.card:hover .card-inner,.card:focus-within .card-inner{transform:rotateY(180deg)}
+.card-front,.card-back{position:absolute;inset:0;border-radius:var(--radius);backface-visibility:hidden;display:flex;align-items:center;justify-content:center;padding:16px}
+.card-front{
+    box-shadow:0 4px 10px rgba(20,30,60,0.06);
+    border: 1px solid var(--muted);
+}
+.card-front h2{margin:0;font-size:1.05rem;color:var(--normal)}
+.card-back{background: white; border: 1px solid var(--fc-muted); transform:rotateY(180deg);box-shadow:0 8px 20px rgba(20,30,60,0.08);color:var(--muted);text-align:justify}
+.card-back p{margin:0;font-size:0.7rem}
+
+/* Mobile accordion */
+.accordion{display:none;margin-bottom:24px}
+.accordion-form{display:flex;flex-direction:column;gap:8px}
+.accordion-form input[type="radio"]{display:none}
+.accordion-form label{background:var(--card);padding:12px 14px;border-radius:8px;display:block;font-weight:600;color:var(--accent);box-shadow:0 2px 6px rgba(10,20,40,0.04);cursor:pointer}
+.acc-panel{max-height:0;overflow:hidden;background:transparent;padding:0 12px;border-radius:0 0 8px 8px;transition:max-height .28s ease;color:var(--muted)}
+.acc-panel p{margin:10px 0}
+.accordion-form input[type="radio"]:checked + label + .acc-panel{max-height:420px}
+
+/* Policy area */
+.policy details{background:var(--card);padding:12px;box-shadow:0 2px 8px rgba(10,20,40,0.04)}
+.policy summary{font-weight:700;cursor:pointer}
+.policy pre{white-space:pre-wrap;margin-top:12px;color:var(--muted);font-size:0.9rem}
+
+.site-footer{text-align:center;padding:18px 16px;color:var(--muted)}
+.site-footer a{color:var(--accent);text-decoration:none}
+
+/* Responsive rules */
+/* Layout tuning for common breakpoints */
+@media (min-width:1100px){
+  /* let columns adapt and grow — cards will resize with the grid */
+  .cards-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+}
+@media (min-width:700px) and (max-width:1099px){
+  .cards-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:6px}
+}
+@media (max-width:1024px){
+  .site-header h1{
+    font-size:48px;
+    line-height:4rem;
+  }
+}
+@media (max-width:899px){
+  .site-header h1{
+    font-size:28px;
+    line-height:2rem;
+  }
+  .header-button{
+    width:100%;
+    min-height:48px;
+  }
+}
+@media (max-width:700px){
+  /* hide desktop cards, show mobile accordion */
+  .cards-grid{display:none}
+  .accordion{display:block}
+  .container{padding:0 12px}
+}
+
+/* small touch affordance */
+@media (hover:none){
+  .card{cursor:default}
+  .card-inner{transform:none !important}
+}
+
+
+/* Trust Chart / Flowchart Styles */
+.trust-chart {
+  padding: 40px 16px;
+  text-align: left;
+  background:var(--card);padding:12px;border-radius:var(--radius);box-shadow:0 2px 8px rgba(10,20,40,0.04);
+  position: relative;
+}
+
+.hover-cards {
+  padding: 20px 20px 16px 16px;
+  margin: 40px 0;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(10, 20, 40, 0.08);
+}
+
+
+.svg-pos{
+  margin-left: 60px;
+}
+
+.trust-chart h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: var(--normal);
+}
+
+.attention {
+  font-size: 1rem;
+  margin-top: -10px;
+  margin-bottom: 30px;
+  padding: 5px 30px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  font-weight: 800;
+  box-sizing: content-box;
+  width: fit-content;
+  background-color: var(--accent);
+}
+
+
+
+#mermaid-diagram {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  background: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+.diagram-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 1100px;
+}
+
+.flowchart-svg {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+}
+
+.node-group {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.node-group:hover rect {
+  fill: #f5f5f5;
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.node-group:hover text {
+  font-weight: bold;
+}
+
+/* also support programmatic hover (class toggled from JS) */
+.node-group.hovered rect {
+  fill: #f5f5f5;
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+.node-group.hovered text {
+  font-weight: bold;
+}
+
+.svg-tooltip {
+  position: fixed;
+  background: white;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--normal);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 320px;
+  word-wrap: break-word;
+  display: none;
+  white-space: normal;
+  animation: slideDown 0.2s ease-out;
+  background: linear-gradient(to bottom, white, #fafafa);
+}
+
+.svg-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--accent);
+}
+
+[data-tooltip] {
+  white-space: pre-line;
+}
+
+
+
+
+.svg-tooltip.visible {
+  display: block;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+  .trust-chart h2 {
+    font-size: 1.4rem;
+  }
+  
+  #mermaid-diagram {
+    overflow-x: auto;
+  }
+}
+
+/*Mobile trust chart*/
+.trust-chart-mobile{
+  padding: 40px 16px;
+  text-align: left;
+  background:var(--card);padding:12px;border-radius:var(--radius); box-shadow:0 2px 8px rgba(10,20,40,0.04);
+  position: relative;
+}
+
+
+.flowchart-mobile{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flowchart-card-mobile{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: display 1s ease;
+  border: 1px solid black;
+}
+.flowchart-card-mobile > * {
+  border: 1px solid red;
+}
+
+.flowchart-card-title-mobile{
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  height: 100%
+}
+
+.flowchart-card-description-mobile{
+  border: 1px solid black;
+  border-radius: var(--radius);
+  visibility: hidden;
+}
+
+.flowchart-card-mobile:hover > .flowchart-card-description-mobile {
+  visibility: visible;
+}
+
+.flowchart-card-mobile:hover {
+  display: flex;
+  justify-content: center;
+  flex-direction: row !important;
+  align-items: center;
+}
+
+/* Student flow mobile (touch-friendly step list on phone); describes SVG flow */
+.student-flow-mobile {
+  display: none;
+}
+
+.student-flow-mobile .student-flow-step {
+  margin-bottom: 8px;
+}
+
+.student-flow-mobile .student-flow-step:not(:first-child) {
+  display: none;
+}
+
+.student-flow-mobile .student-flow-step.revealed {
+  display: block;
+  animation: studentFlowStepAppear 0.4s ease-out forwards;
+}
+
+@keyframes studentFlowStepAppear {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.student-flow-mobile .student-flow-step-inner {
+  display: flex;
+  min-height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(232, 94, 52, 0.25);
+  background: var(--card);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.student-flow-mobile .student-flow-step-inner:hover {
+  box-shadow: 0 2px 12px rgba(10, 20, 40, 0.08);
+}
+
+.student-flow-mobile .student-flow-step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 14px 16px;
+  min-width: 100px;
+  width: 42%;
+  background: var(--accent);
+  color: white;
+}
+
+.student-flow-mobile .student-flow-step-left .student-flow-step-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.student-flow-mobile .student-flow-step-left .student-flow-step-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.student-flow-mobile .student-flow-step-right {
+  flex: 1;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.student-flow-mobile .student-flow-step-desc {
+  margin: 0;
+}
+
+.student-flow-mobile .student-flow-step-next {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 16px;
+}
+
+.student-flow-mobile .student-flow-step.open .student-flow-step-next {
+  max-height: 120px;
+}
+
+.student-flow-mobile .student-flow-step-next-inner {
+  padding: 12px 16px 16px 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.student-flow-mobile .student-flow-step-next-inner .student-flow-arrow {
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.student-flow-step-bob-arrow {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 4px;
+  color: var(--accent);
+  font-size: 1.1rem;
+  animation: studentFlowBob 1.2s ease-in-out infinite;
+}
+
+.student-flow-step.opened .student-flow-step-bob-arrow {
+  animation: none;
+}
+
+@keyframes studentFlowBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* Special card: one card with two inner cards (Dashboard | gap | Research) */
+.student-flow-step-special .student-flow-step-inner {
+  flex-direction: column;
+  align-items: stretch;
+  min-height: auto;
+}
+
+.student-flow-step-special .student-flow-special-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: white;
+  padding: 12px 14px 8px;
+  text-align: center;
+  border-bottom: 1px solid rgba(232, 94, 52, 0.2);
+  background: var(--accent);
+}
+
+.student-flow-inner-cards {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px 14px;
+}
+
+.student-flow-inner-card {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(232, 94, 52, 0.25);
+  border-radius: 10px;
+  padding: 12px;
+  background: var(--card);
+}
+
+.student-flow-inner-card-head {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.student-flow-inner-card .student-flow-step-desc {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Show student flow on phone; hide SVG (must come after .student-flow-mobile base so it wins) */
+@media (max-width: 768px) {
+  .trust-chart .svg-container { display: none; }
+  .trust-chart .attention { display: none; }
+  .student-flow-mobile { display: block; }
+  .trust-chart-mobile { display: none; }
+}
+
+  </style>
+  <main class="container">
+    <!-- Data Flow Diagram -->
+     
+    <section class="trust-chart">
+    <h1 class="pickaxe-trustus-h1">What is happening within the system..</h1>
+    <div class="student-flow-mobile" aria-label="Data flow steps">
+      <div class="student-flow-step">
+        <div class="student-flow-step-inner" role="button" tabindex="0">
+          <div class="student-flow-step-left">
+            <span class="student-flow-step-icon" aria-hidden="true">💬</span>
+            <span class="student-flow-step-title">User Messages</span>
+          </div>
+          <div class="student-flow-step-right"><p class="student-flow-step-desc">Your input to the system. All confidential.</p></div>
+        </div>
+        <div class="student-flow-step-bob-arrow" aria-hidden="true">▼</div>
+        <div class="student-flow-step-next"><div class="student-flow-step-next-inner"><span class="student-flow-arrow">▼</span> Next: Pickaxe</div></div>
+      </div>
+      <div class="student-flow-step">
+        <div class="student-flow-step-inner" role="button" tabindex="0">
+          <div class="student-flow-step-left">
+            <span class="student-flow-step-icon" aria-hidden="true">⛏️</span>
+            <span class="student-flow-step-title">Pickaxe × AI Hub</span>
+          </div>
+          <div class="student-flow-step-right"><p class="student-flow-step-desc">AI processes your request. Providers do not use your chats to train models.</p></div>
+        </div>
+        <div class="student-flow-step-bob-arrow" aria-hidden="true">▼</div>
+        <div class="student-flow-step-next"><div class="student-flow-step-next-inner"><span class="student-flow-arrow">▼</span> Next: Pseudonymization</div></div>
+      </div>
+      <div class="student-flow-step">
+        <div class="student-flow-step-inner" role="button" tabindex="0">
+          <div class="student-flow-step-left">
+            <span class="student-flow-step-icon" aria-hidden="true">😶‍🌫️</span>
+            <span class="student-flow-step-title">Pseudonymization</span>
+          </div>
+          <div class="student-flow-step-right"><p class="student-flow-step-desc">Your identity is separated from your data (e.g. user ID, cohort).</p></div>
+        </div>
+        <div class="student-flow-step-bob-arrow" aria-hidden="true">▼</div>
+        <div class="student-flow-step-next"><div class="student-flow-step-next-inner"><span class="student-flow-arrow">▼</span> Next: Anonymizer</div></div>
+      </div>
+      <div class="student-flow-step">
+        <div class="student-flow-step-inner" role="button" tabindex="0">
+          <div class="student-flow-step-left">
+            <span class="student-flow-step-icon" aria-hidden="true">☁️</span>
+            <span class="student-flow-step-title">Anonymizer</span>
+          </div>
+          <div class="student-flow-step-right"><p class="student-flow-step-desc">Names and personal identifiers are removed from conversations.</p></div>
+        </div>
+        <div class="student-flow-step-bob-arrow" aria-hidden="true">▼</div>
+        <div class="student-flow-step-next"><div class="student-flow-step-next-inner"><span class="student-flow-arrow">▼</span> Next: FC Database</div></div>
+      </div>
+      <div class="student-flow-step">
+        <div class="student-flow-step-inner" role="button" tabindex="0">
+          <div class="student-flow-step-left">
+            <span class="student-flow-step-icon" aria-hidden="true">🏬</span>
+            <span class="student-flow-step-title">FC Database</span>
+          </div>
+          <div class="student-flow-step-right"><p class="student-flow-step-desc">Secure storage. Only three AI admins have access; fellows and staff do not.</p></div>
+        </div>
+        <div class="student-flow-step-bob-arrow" aria-hidden="true">▼</div>
+        <div class="student-flow-step-next"><div class="student-flow-step-next-inner"><span class="student-flow-arrow">▼</span> Next: split view below</div></div>
+      </div>
+      <div class="student-flow-step student-flow-step-special">
+        <div class="student-flow-step-inner student-flow-special-inner" role="button" tabindex="0">
+          <div class="student-flow-special-title">Dashboard & Research</div>
+          <div class="student-flow-inner-cards">
+            <div class="student-flow-inner-card student-flow-inner-card-dashboard">
+              <div class="student-flow-inner-card-head">📊 Dashboard</div>
+              <p class="student-flow-step-desc">Your personal activity page—conversation history, usage stats; only you can see it.</p>
+            </div>
+            <div class="student-flow-inner-card student-flow-inner-card-research">
+              <div class="student-flow-inner-card-head">🔬 Research</div>
+              <p class="student-flow-step-desc">Approved fellows and researchers may access anonymized datasets for studies; daily AI use is never used to profile or grade you.</p>
+            </div>
+          </div>
+        </div>
+        <div class="student-flow-step-next"><div class="student-flow-step-next-inner"><span class="student-flow-arrow">▼</span> End</div></div>
+      </div>
+    </div>
+     <p class="attention">Hover over the elements to learn more</p>
+      <!-- SVG placed directly in the section at its original size -->
+       <div class="svg-container">
+        <div class="svg-pos">
+      <svg id="flowchart-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600" class="flowchart-svg">
+          <!-- Nodes with hover groups -->
+          <g class="node-group" data-tooltip="Your initial input to the system. E.g.: <br><br><strong class='bold'> (Anna's message) </strong><br> Dear Joe, <br> ... <br> Best, Anna">
+            <rect x="50" y="50" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+            <text x="140" y="85" text-anchor="middle" font-size="30" font-weight="bold">💬</text>          
+            <text x="140" y="105" text-anchor="middle" font-size="14" font-weight="bold">User Messages</text>
+          </g>
+          
+          <g class="node-group" data-tooltip="Our AI tools process your request and try their best to be at your help. When you use the AI Hub, providers (OpenAI, Google, etc)  are <strong>NOT</strong> allowed to use your conversations to train models. Pickaxe stores and processes your data in order to provide you with the service">
+            <rect x="350" y="50" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+            <text x="440" y="85" text-anchor="middle" font-size="30" font-weight="bold">⛏️</text>          
+            <text x="440" y="105" text-anchor="middle" font-size="14" font-weight="bold">Pickaxe x Forward AI Hub</text>          
+          </g>
+
+          <g class="node-group" data-tooltip="Your name is substituted with a generic user ID  and information to separate your identity from your data. E.g.: <br><br><strong class='bold'> (USER12345, Cohort Y3, Psychology)</strong> <br> Dear Joe, <br> ... <br> Best, Anna">
+            <rect x="650" y="50" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+            <text x="740" y="85" text-anchor="middle" font-size="30" font-weight="bold">😶‍🌫️</text>          
+            <text x="740" y="105" text-anchor="middle" font-size="14" font-weight="bold">Pseudonymization</text>
+          </g>
+          
+          <g class="node-group" data-tooltip="An automated system that attempts to removenames, emails, phone numbers and other personal identifiers from your conversations. E.g.: <br><br><strong class='bold'> (USER12345, Cohort Y3, Psychology) </strong> <br> Dear &lt;\NAME&gt;, <br> ... <br> Best, &lt;\NAME&gt; <br> <br> <i class='smallscript'>Nonetheless, keep in mind to never share sensitive personal info in any of your conversations with any AI tools at your disposal!</i>">
+            <rect x="650" y="220" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+            <text x="740" y="255" text-anchor="middle" font-size="30" font-weight="bold">☁️</text>          
+            <text x="740" y="275" text-anchor="middle" font-size="14" font-weight="bold">Anonymizer</text>
+          </g>
+          
+          <g class="node-group" data-tooltip="The pseudonimized and anonymized conversation is stored in a secure database. Only three AI team administrators have access to this raw data, and they are bound by confidentiality agreements. <br><br> Fellows, staff and the leadership team do <strong class='bold'> NOT </strong> have access to this database. 
+">
+            <rect x="350" y="220" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+            <text x="440" y="255" text-anchor="middle" font-size="25" font-weight="bold">🏬</text>          
+            <text x="440" y="275" text-anchor="middle" font-size="14" font-weight="bold">FC Database</text>
+          </g>
+          
+          <g class="node-group" data-tooltip="Your personal activity page. You can see your conversation history, usage statistics, and activity on your personal dashboard. The data present here is available only to you.">
+            <rect x="150" y="390" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+            <text x="240" y="425" text-anchor="middle" font-size="30" font-weight="bold">📊</text>          
+            <text x="240" y="445" text-anchor="middle" font-size="14" font-weight="bold">Dashboard</text>
+          </g>
+          
+          <g class="node-group" data-tooltip="Fellows and researchers affiliated with Forward College who have submitted well-defined research proposals may request approval to access select datasets for research purposes. <br><br><strong class='bold'> Forward maintains strict ethical standards for these research activities, particularly those involving student conversations or interactions. Every day interactions with the AI hub will never be used to profile, grade or invigilate students.</strong>">
+            <rect x="550" y="390" width="180" height="80" rx="8" fill="white" stroke="#333" stroke-width="2"/>
+            <text x="640" y="425" text-anchor="middle" font-size="30" font-weight="bold">🔬</text>          
+            <text x="640" y="445" text-anchor="middle" font-size="14" font-weight="bold">Research Datasets</text>
+          </g>
+          
+          <!-- Arrows -->
+          <!-- User to Pickaxe -->
+          <path d="M 230 100 L 350 100" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          <text x="255" y="95" font-size="11" fill="#e85e34" font-weight="bold">Processing</text>
+          
+          <!-- Pickaxe to Pseudonymization -->
+          <path d="M 530 90 L 650 90" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          <text x="555" y="85" font-size="11" fill="#e85e34" font-weight="bold">Anonymizing</text>
+          
+          <!-- Pickaxe to User (return) -->
+          <path d="M 350 70 L 230 70" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          <text x="275" y="65" font-size="11" fill="#e85e34" font-weight="bold">Return</text>
+          
+          <!-- Pseudonymization to Anonymizer -->
+          <path d="M 740 130 L 740 220" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          <text x="750" y="170" font-size="11" fill="#e85e34" font-weight="bold">Redacting</text>
+          
+          <!-- Anonymizer to FC Database -->
+          <path d="M 650 260 L 530 260" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          <text x="585" y="255" font-size="11" fill="#e85e34" font-weight="bold">Storing</text>
+          
+          <!-- FC Database to Dashboard -->
+          <path d="M 430 300 Q 400 330 330 390" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          <text x="335" y="330" font-size="11" fill="#e85e34" font-weight="bold">Accessing</text>
+          
+          <!-- FC Database to Joint Database -->
+          <path d="M 440 300 L 550 390" stroke="#e85e34" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+          <text x="490" y="330" font-size="11" fill="#e85e34" font-weight="bold">For Research</text>
+          
+          <!-- Arrow marker definition -->
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <polygon points="0 0, 10 3, 0 6" fill="#e85e34"/>
+            </marker>
+          </defs>
+        </svg>
+        <!-- Tooltip container -->
+        <div id="svg-tooltip" class="svg-tooltip"></div>
+      <!-- end trust-chart svg -->
+       </div>
+       </div>
+     </section>
+
+   
+
+    <section class="hover-cards" aria-label="Key privacy points">
+    <h1 class="pickaxe-trustus-h1">If you hold concerns with the process, such as.. </h1>
+    <div class="cards-grid" >
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>1. What is the AI Hub?</h2>
+          </div>
+          <div class="card-back">
+            <p>It's your college's web platform where you can access various AI tools, chatbots, and productivity assistants designed to support your learning and research.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>2. What comes with activating my account?</h2>
+          </div>
+          <div class="card-back">
+            <p>You'll need to fill out a Consent Form, and once a team member approves it, your account will be activated. This is a legal requirement and helps everyone understand how their data is used.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>3. What can I use it for?</h2>
+          </div>
+          <div class="card-back">
+            <p>Use it for learning, research, and studying with AI tools. Your usage must be in line with the code of conduct and with academic policies. Using AI to write your assessments is forbidden unless fellows explicitly allow it. </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>4. What data do I consent to?</h2>
+          </div>
+          <div class="card-back">
+            <p>Apart from the data collected by pickaxe to provide AI services we also collect your basic info (name, email), what you ask the AI and its responses, content you paste, some content from files you upload, your cohort year, your degree and your programme.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>5. Does consent make my data public?</h2>
+          </div>
+          <div class="card-back">
+            <p>No. Your conversations are stored anonymously and automatically cleaned of personal details. Only you and select members of the AI team can see your activity during database and AI Hub maintenance tasks.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>6. Who can see my data?</h2>
+          </div>
+          <div class="card-back">
+            <p>Only a small team of AI administrators who are bound by confidentiality agreements can see your data. No one with authority over you will get access to your personal data. Researchers and staff only get access to aggregate data (counts, averages, etc.) or to anonymized conversations. </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>7. Why is my data needed?</h2>
+          </div>
+          <div class="card-back">
+            <p>Your data helps us understand how AI best supports your learning and improves the Hub. Your conversations are never used to profile you, monitor you, or affect your grades. </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>8. How do you store my data?</h2>
+          </div>
+          <div class="card-back">
+            <p>Your data is kept safe on secure servers in Europe. We only keep your personal data as long as needed, though we may keep anonymized stats for research.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>9. What control do I have?</h2>
+          </div>
+          <div class="card-back">
+            <p>You have full control: see your data, correct it, delete it, or stop us from using it. Email <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a> to exercise any of these rights.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-inner">
+          <div class="card-front">
+            <h2>10. How will I know about policy changes?</h2>
+          </div>
+          <div class="card-back">
+            <p>We'll let you know about any important changes through email or notifications. You can always find the latest policy on the Hub.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+    </section>
+
+    <!-- Mobile: Accordion (touch-friendly) -->
+    <section class="accordion" aria-label="Key privacy points (mobile)">
+      <form class="accordion-form" aria-hidden="true">
+        <input type="radio" name="acc" id="acc1">
+        <label for="acc1">1. What is the AI Hub?</label>
+        <div class="acc-panel">
+          <p>It's your college's web platform where you can access various AI tools, chatbots, and productivity assistants designed to support your learning and research.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc2">
+        <label for="acc2">2. What comes with activating my account?</label>
+        <div class="acc-panel">
+          <p>You'll need to fill out a Consent Form, and once a team member approves it, your account will be activated. This ensures everyone understands how their data is used.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc3">
+        <label for="acc3">3. What can I use it for?</label>
+        <div class="acc-panel">
+          <p>Use it for learning, research, and studying with AI tools. However, you can't use it for dishonest purposes or to write assignments unless your teacher says it's okay.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc4">
+        <label for="acc4">4. What data do I consent to?</label>
+        <div class="acc-panel">
+          <p>We collect your basic info (name, email), what you ask the AI and its responses, files you upload, and technical details like your device type. This helps us make the Hub better and safer.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc5">
+        <label for="acc5">5. Does consent make my data public?</label>
+        <div class="acc-panel">
+          <p>No. Your conversations are stored anonymously and automatically cleaned of personal details. Only you can see your activity on your personal dashboard.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc6">
+        <label for="acc6">6. Who can see my data?</label>
+        <div class="acc-panel">
+          <p>Only a small team of AI administrators who are bound by confidentiality agreements can see your data. Developers only get access to anonymized (nameless) information.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc7">
+        <label for="acc7">7. Why is my data needed?</label>
+        <div class="acc-panel">
+          <p>Your data helps us understand how AI best supports your learning and improve the Hub. Your conversations are never used to grade you or affect your grades.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc8">
+        <label for="acc8">8. How do you store my data?</label>
+        <div class="acc-panel">
+          <p>Your data is kept safe on secure servers in Europe. We only keep your personal data as long as needed, though we may keep anonymized stats for research.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc9">
+        <label for="acc9">9. What control do I have?</label>
+        <div class="acc-panel">
+          <p>You have full control: see your data, correct it, delete it, or stop us from using it. Email <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a> to exercise any of these rights.</p>
+        </div>
+
+        <input type="radio" name="acc" id="acc10">
+        <label for="acc10">10. How will I know about policy changes?</label>
+        <div class="acc-panel">
+          <p>We'll let you know about any changes through email or notifications. You can always find the latest policy on the Hub.</p>
+        </div>
+      </form>
+    </section>
+
+    <h1 class="pickaxe-trustus-h1">For further information, consult the policy bellow </h1>
+
+    <section class="policy">
+      <details>
+        <summary>Forward College AI Hub – Usage and Data Processing Policy (August 2025)</summary>
+        <pre>
+Forward College AI Hub – Usage and Data Processing Policy
+August 2025
+
+1. Introduction and Scope
+This policy outlines how the AI Hub at Forward College may be used and how all associated data is processed. It applies to all users of the Student's AI Hub. It is designed to supplement Forward College’s core Data Protection Policy, Students’ Privacy Notice, and GDPR Policy.
+
+The “AI Hub” refers to the conjunction of artificial intelligence resources and tools provided by Forward College and, accessible through the AI Hub web platform (ai.forward-college.eu). This may include conversational chatbots using Large Language Models (LLMs) provided by third-party companies (such as OpenAI, Claude, Google, etc.), specific assistants with access to tools and resources developed by Forward College, automations and actions associated with those bots, productivity and research tools, usage dashboards  and other AI-powered applications. It also encompasses integrated third-party services such as Pickaxe, Firebase and Google Cloud, which provide the underlying infrastructure for certain features.
+
+2. Consent and Account Activation
+By using the AI Hub, you acknowledge and consent to your data being processed according to this policy and all related Forward College data protection policies.
+In order to get their account activated, students must register their consent and interest through the Consent Form. Each application will be reviewed by a member of the team which will then activate account.
+
+3. Acceptable Use
+The AI Hub is intended for educational, research, and official administrative purposes related to Forward College, as well as to support students in their daily academic tasks, learning activities, and overall educational development. It is also designed to help students better understand and use AI responsibly, fostering awareness of best practices in AI usage. 
+Users are prohibited from engaging in unlawful activities, attempts to bypass security measures, or creating and uploading disallowed content. All uploaded materials must comply with the Code of Conduct, meaning users must not submit infringing or unauthorized third-party content. In addition, any content generated through the AI Hub must adhere to the guidelines for generative AI usage outlined in the Plagiarism Policy. Using the AI Hub to produce assessment responses is strictly prohibited unless explicit permission has been granted.
+
+4. Data Collection
+The following data may be collected:
+Account details: Name, email.
+Interaction data: Prompts, responses, conversation history and pasted content.
+Uploaded content: Any files (documents, images) submitted to the Hub.
+Technical data: IP address, browser/device info.
+Data is collected at login, during usage, upon file upload, and via integrations.
+
+5. Pseudonymization and Interaction Privacy
+All conversation data is pseudonymized, meaning any personal identifiers are replaced with anonymous user IDs, for storage and processing. Conversations are logged based on these IDs and associated names and email addresses are decoupled upon collection.
+Conversations are further anonymized by an automated anonymization algorithm which removes email addresses and names from conversations. (Data Protection Policy, GDPR Principle 3: Data Minimisation).
+Your personal AI Hub activity data is private available only to you via your personal dashboard.
+The anonymous data collected might be coupled with academic and information such as major, courses taken and grades.
+Staff and fellows will only have access through a formal request to the AI Team, upon presentation of legitimate interest, precautions and ethical considerations.
+
+6. Data Sharing and Access
+Access to the raw data and processing will always be restricted to up to three AI Hub administrators, members of the AI Team, who hold no authority over students.
+All of the administrators with access to the data storage and processing, must sign NDA's with Forward College, strictly prohibiting sharing of any information contained in the data.
+Only pseudonymized data is available to the AI development team and for improvement of services. The matching sheet and conversion process is confidential, kept protected and separate from the main data.
+Data may be shared with external processors (e.g., cloud providers, LLM providers, Pickaxe), as permitted by policy and law, and always under strict agreements DPAs (Students’ Privacy Notice, “What information do we share and with whom?”).
+
+7. Usage of the data
+The data collected might be used for
+Conducting research to understand how AI can best support student learning and engagement.
+Improving, testing, and further developing the AI Hub to enhance functionality, reliability, and accessibility.
+Creating and maintaining student dashboards to help learners track and reflect on their AI usage and learning progress.
+Monitoring and improving the quality, accuracy, and fairness of AI responses.
+Supporting the development of new educational tools, resources, and features that benefit students and faculty.
+Ensuring system security.
+Performing anonymized or aggregated analytics to identify usage trends and inform institutional decision-making.
+Routine AI Hub interactions are never used for evaluation, academic progression decisions, or profiling (Data Protection Policy, GDPR Principle 2 & 3). Assessments including AI will be communicated to students beforehand.
+AI Hub interactions are not used for model training by any of the external processors and LLM providers, as per Data Processing Agreements signed between Forward and them.
+
+8. Storage Location and Retention
+Forward stores data securely on servers within the European Union.
+Retention period: Personal data is retained only as long as necessary; anonymized usage data may be kept for statistical purposes (Data Protection Policy, GDPR Principle 5: Storage Limitation).
+
+9. User Rights
+Under GDPR and Forward College policies, you have rights to:
+Access, rectify, or delete your data.
+Restrict or object to certain processing.
+Data portability.
+Withdraw consent at any time, where applicable. To exercise these rights, contact the AI Team at ai@forward-college.eu
+
+10. Policy Changes
+We will notify users of material changes to this policy via banner, email, or in-app notice. The latest version will always be available for consultation on the AI Hub and on the Intranet.
+        </pre>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Questions? Contact the AI Team: <a href="mailto:ai@forward-college.eu">ai@forward-college.eu</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      var isInitialized = false;
+      var attempts = 0;
+
+      function initStudentFlowMobile() {
+        if (isInitialized) return;
+
+        var flowMobile = document.querySelector('.student-flow-mobile');
+        if (flowMobile) {
+          flowMobile.querySelectorAll('.student-flow-step-inner').forEach(function(inner) {
+            function revealNext() {
+              var step = inner.closest('.student-flow-step');
+              if (!step) return;
+              step.classList.add('opened');
+              var nextStep = step.nextElementSibling;
+              if (nextStep && nextStep.classList.contains('student-flow-step')) {
+                nextStep.classList.add('revealed');
+              }
+            }
+            inner.addEventListener('click', revealNext);
+            inner.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                revealNext();
+              }
+            });
+          });
+          isInitialized = true;
+          attempts = 0;
+        } else {
+          attempts++;
+          if (attempts < 20) {
+            setTimeout(initStudentFlowMobile, 500);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        initStudentFlowMobile();
+      });
+    })();
+  </script>
+ 
+</body>
+
+

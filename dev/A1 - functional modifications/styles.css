@@ -1,0 +1,184 @@
+/* =======. Code color change ==========. */
+pre:has(.pxe-markdown-code-inline) {
+    background:#dedede;
+    border-radius:.5em;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+code.pxe-markdown-code-inline{
+    background-color:#dedede !important;
+    color:black !important;
+    font-weight:600 !important;
+}
+/* =============  Banner ============*/
+
+.fc-banner {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    box-sizing: border-box;
+    max-width: 95%;
+    background: #f9fafb; 
+    color: #111;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    font: 600 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+    max-height: var(--fc-banner-h, 200px);
+    opacity: 1;
+    transition: max-height 300ms ease, opacity 300ms ease, padding 300ms ease, border-color 300ms ease, transform 300ms ease;
+  }
+
+  .fc-banner span {
+    max-width: 800px;
+  }
+
+  .fc-banner__close {
+    flex-shrink: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.06);
+    color: #111;
+    border-radius: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .fc-banner__close:hover,
+  .fc-banner__close:focus {
+    background: rgba(0, 0, 0, 0.12);
+    outline: none;
+  }
+
+  .fc-banner.is-hiding {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: transparent;
+    transform: translate(-50%, -10px);
+  }
+
+/*-----------------EDIT BUTTON-------------------*/
+/* Container that triggers hover visibility */
+.edit-btn {
+  opacity: 0.7; /* or 1 if you want fully visible */
+  transition: opacity 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  opacity: 1;
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    .fc-banner {
+      transition: none;
+    }
+  }
+
+
+/* ========== NEW (since march) =============== */
+
+
+/* Remove Forward College Logo and name */
+span.text-\[20px\].max-\[1024px\]\:text-\[20px\].max-\[899px\]\:text-\[18px\].min-w-0.truncate.whitespace-nowrap.text-left.font-semibold.transition-all.duration-300.ease-in-out.max-\[859px\]\:max-w-full.ml-1.mr-3.max-w-\[200px\].opacity-100 {
+    display: none;
+}
+span.text-\[20px\].max-\[1024px\]\:text-\[20px\].max-\[899px\]\:text-\[18px\].min-w-0.truncate.whitespace-nowrap.text-left.font-semibold.transition-all.duration-300.ease-in-out.max-\[859px\]\:max-w-full.ml-0.max-w-0.opacity-0.group-hover\:ml-1.group-hover\:mr-3.group-hover\:max-w-\[200px\].group-hover\:opacity-100 {
+    display: none;
+}
+
+/* Remove padding from menu icon container */
+.flex.min-h-\[72px\].items-center.justify-between.gap-2.py-2.pl-6.pr-7.transition-colors.duration-500.max-\[859px\]\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Remove boxshadow from menu items */
+.glass{
+    box-shadow: none;
+}
+
+/* Scrollbar tighter */
+.custom-scrollbar.flex.min-h-0.flex-grow.flex-col.gap-4.overflow-y-auto.px-4.py-6 {
+    padding-top: 0px;
+    gap: 0.1rem;
+}
+
+/* Chat name bigger */
+@media (min-width: 768px) {
+    flex.items-center.gap-2.z-20.min-w-0.max-w-\[140px\].md\:max-w-\[200px\] {
+        max-width: 500px;
+    }
+}
+
+
+/* ===== Make space for side menu  ====== */
+
+.relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before,
+.relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > * {
+  transition:
+    margin-left 0.22s ease,
+    width 0.22s ease,
+    transform 0.22s ease;
+}
+
+body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 350px;
+  z-index: 0;
+}
+
+body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > * {
+  margin-left: 230px;
+  width: calc(100% - 230px);
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1250px) {
+  body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before {
+    width: 450px;
+  }
+
+  body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > * {
+    margin-left: 320px;
+    width: calc(100% - 320px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before,
+  .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > * {
+    transition: none;
+  }
+}
+
+
+/* 
+
+body:not(.fc-sidebar-open) .glass-dynamic.group.fixed.left-0.top-0.z-\[100100\].m-4.flex.flex-col.overflow-hidden.max-\[859px\]\:m-0.max-\[859px\]\:rounded-none.max-\[859px\]\:border-0.max-\[859px\]\:shadow-none {
+  max-width: 317px;
+}
+
+*/

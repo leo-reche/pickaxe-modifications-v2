@@ -1,0 +1,323 @@
+
+    :root{
+  --bg:white;
+  --card:#ffffff;
+  --accent:#e85e34;
+  --fc-muted:#e85e34;
+  --muted-accent:#ffa78e;
+  --muted:#555;
+  --normal:#000;
+  --radius:24px;
+}
+
+*{box-sizing:border-box}
+
+a {
+  color: var(--accent)
+}
+body{font-family:Inter,Segoe UI,system-ui,Arial,sans-serif;margin:0;background:var(--bg);color:#222}
+.site-header{
+  min-height:calc(100vh - 80px);
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:48px 16px;
+  background-image:url("https://pickaxe.co/resources/images/studio-hero/pickaxe-light-hero.jpg"),linear-gradient(to right,rgba(255,255,255,0.9),transparent);
+  background-position:left center;
+  background-size:cover;
+  background-blend-mode:overlay;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+}
+.header-content{
+  max-width:632px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.site-header h1{
+  margin:0 0 16px 0;
+  font-size:56px;
+  font-weight:600;
+  line-height:5rem;
+  color:#000;
+}
+
+/* Pickaxe Trustus: lock h1 appearance to avoid builder font overrides */
+.pickaxe-trustus-h1 {
+  font-family: Inter, 'Segoe UI', system-ui, Arial, sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--normal);
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  font-size: 2rem;
+}
+.site-header p{
+  margin:0 0 24px 0;
+  font-size:16px;
+  color:#000;
+  line-height:1.5;
+  width: 80%
+}
+.header-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:16px 32px;
+  background-color:#000;
+  color:#fff;
+  border:1px solid #000;
+  border-radius:var(--radius);
+  font-weight:600;
+  font-size:16px;
+  cursor:pointer;
+  width:fit-content;
+  transition:opacity 300ms ease;
+}
+.header-button:hover{
+  opacity:0.7;
+}
+.header-button:active{
+  opacity:1;
+}
+.container{max-width:1100px;margin:18px auto;padding:0 16px}
+
+/* Cards grid for desktop/tablet */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:4px;margin-bottom:12px;align-items:start}
+.card{
+    background:transparent;border-radius:var(--radius);width:100%;aspect-ratio:1/1;overflow:hidden;display:block;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+.card-inner{position:relative;inset:0;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.card:hover .card-inner,.card:focus-within .card-inner{transform:rotateY(180deg)}
+.card-front,.card-back{position:absolute;inset:0;border-radius:var(--radius);backface-visibility:hidden;display:flex;align-items:center;justify-content:center;padding:16px}
+.card-front{
+    box-shadow:0 4px 10px rgba(20,30,60,0.06);
+    border: 1px solid var(--muted);
+}
+.card-front h2{margin:0;font-size:1.05rem;color:var(--normal)}
+.card-back{background: white; border: 1px solid var(--fc-muted); transform:rotateY(180deg);box-shadow:0 8px 20px rgba(20,30,60,0.08);color:var(--muted);text-align:justify}
+.card-back p{margin:0;font-size:0.95rem}
+
+/* Mobile accordion */
+.accordion{display:none;margin-bottom:24px}
+.accordion-form{display:flex;flex-direction:column;gap:8px}
+.accordion-form input[type="radio"]{display:none}
+.accordion-form label{background:var(--card);padding:12px 14px;border-radius:8px;display:block;font-weight:600;color:var(--accent);box-shadow:0 2px 6px rgba(10,20,40,0.04);cursor:pointer}
+.acc-panel{max-height:0;overflow:hidden;background:transparent;padding:0 12px;border-radius:0 0 8px 8px;transition:max-height .28s ease;color:var(--muted)}
+.acc-panel p{margin:10px 0}
+.accordion-form input[type="radio"]:checked + label + .acc-panel{max-height:420px}
+
+/* Policy area */
+.policy details{background:var(--card);padding:12px;box-shadow:0 2px 8px rgba(10,20,40,0.04)}
+.policy summary{font-weight:700;cursor:pointer}
+.policy pre{white-space:pre-wrap;margin-top:12px;color:var(--muted);font-size:0.9rem}
+
+.site-footer{text-align:center;padding:18px 16px;color:var(--muted)}
+.site-footer a{color:var(--accent);text-decoration:none}
+
+/* Responsive rules */
+/* Layout tuning for common breakpoints */
+@media (min-width:1100px){
+  /* let columns adapt and grow — cards will resize with the grid */
+  .cards-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+}
+@media (min-width:700px) and (max-width:1099px){
+  .cards-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:6px}
+}
+@media (max-width:1024px){
+  .site-header h1{
+    font-size:48px;
+    line-height:4rem;
+  }
+}
+@media (max-width:899px){
+  .site-header h1{
+    font-size:28px;
+    line-height:2rem;
+  }
+  .header-button{
+    width:100%;
+    min-height:48px;
+  }
+}
+@media (max-width:700px){
+  /* hide desktop cards, show mobile accordion */
+  .cards-grid{display:none}
+  .accordion{display:block}
+  .container{padding:0 12px}
+}
+
+/* small touch affordance */
+@media (hover:none){
+  .card{cursor:default}
+  .card-inner{transform:none !important}
+}
+
+
+/* Trust Chart / Flowchart Styles */
+.trust-chart {
+  padding: 40px 16px;
+  text-align: left;
+  background:var(--card);padding:12px;border-radius:var(--radius);box-shadow:0 2px 8px rgba(10,20,40,0.04);
+  position: relative;
+}
+
+.hover-cards {
+  padding: 20px 20px 16px 16px;
+  margin: 40px 0;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(10, 20, 40, 0.08);
+}
+
+
+.svg-pos{
+  margin-left: 60px;
+}
+
+.trust-chart h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: var(--normal);
+}
+
+.attention {
+  font-size: 1rem;
+  margin-top: -10px;
+  margin-bottom: 30px;
+  padding: 5px 30px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  font-weight: 800;
+  box-sizing: content-box;
+  width: fit-content;
+  background-color: var(--accent);
+}
+
+
+
+#mermaid-diagram {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  background: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+.diagram-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 1100px;
+}
+
+.flowchart-svg {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+}
+
+.node-group {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.node-group:hover rect {
+  fill: #f5f5f5;
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.node-group:hover text {
+  font-weight: bold;
+}
+
+/* also support programmatic hover (class toggled from JS) */
+.node-group.hovered rect {
+  fill: #f5f5f5;
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+.node-group.hovered text {
+  font-weight: bold;
+}
+
+.svg-tooltip {
+  position: fixed;
+  background: white;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--normal);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 320px;
+  word-wrap: break-word;
+  display: none;
+  white-space: normal;
+  animation: slideDown 0.2s ease-out;
+  background: linear-gradient(to bottom, white, #fafafa);
+}
+
+.svg-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--accent);
+}
+
+[data-tooltip] {
+  white-space: pre-line;
+}
+
+
+
+
+.svg-tooltip.visible {
+  display: block;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+  .trust-chart h2 {
+    font-size: 1.4rem;
+  }
+  
+  #mermaid-diagram {
+    overflow-x: auto;
+  }
+}
