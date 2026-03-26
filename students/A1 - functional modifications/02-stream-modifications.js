@@ -1,6 +1,7 @@
   // syncing with database
   function syncConversation(responseId,formId,studioUserId,pastedContent,url){
   if (url.includes("https://core-pickaxe-api.pickaxe.co/stream")) {
+  console.log("here1")
       try {
       const apiUrl = "https://dashboard-backend-395477780264.europe-west1.run.app";
       const payload = { 
@@ -56,6 +57,7 @@ window.fetch = async function(...args) {
 
 
       if (url.includes("https://core-pickaxe-api.pickaxe.co/submit")){   //Massive if{} to get the formid,responseid,lastmessage,documents
+        if JSON.pase(conifg.body).success ==  true {
           try {
               // Extract from request body
               formId = JSON.parse(config.body).pickaxeId
@@ -89,7 +91,9 @@ window.fetch = async function(...args) {
               console.error("Error in /submit:", error);
               return await originalFetch(url, config);
           }
+       }
       }
+  
       if (url.includes("https://core-pickaxe-api.pickaxe.co/stream")) {
 
           // User clicked stop before the stream request actually started:
