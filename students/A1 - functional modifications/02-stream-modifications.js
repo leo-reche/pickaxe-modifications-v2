@@ -11,7 +11,7 @@
           pastedContent: pastedContent
       };
 
-      originalFetch2(apiUrl, {
+      originalFetch(apiUrl, {
           method: "POST",
           headers: {
               "Content-Type": "application/json"
