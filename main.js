@@ -10,6 +10,7 @@ const fileBase = `https://${owner}.github.io/${repo}/${hub}/`;
 
 async function getFiles(url) {
   const items = await fetch(url).then(r => r.json());
+  console.log(items)
   let files = [];
 
   for (const item of items) {
