@@ -132,7 +132,8 @@ span.text-\[20px\].max-\[1024px\]\:text-\[20px\].max-\[899px\]\:text-\[18px\].mi
 /* ===== Make space for side menu  ====== */
 
 .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before,
-.relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > * {
+.relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > *,
+body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] {
   transition:
     margin-left 0.22s ease,
     width 0.22s ease,
