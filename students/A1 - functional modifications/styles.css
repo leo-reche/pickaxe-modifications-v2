@@ -156,9 +156,20 @@ body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow
   z-index: 1;
 }
 
-body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] { 
-   position: absolute;
+body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] {
+    width: 32px !important;       
+    margin-left: 0 !important;    
+    left: 50%;                    
+    transform: translateX(-50%);  
 }
+
+/* 2. Optional: If you want it centered in the REMAINING space (the chat area) 
+   rather than the whole screen, use this transform instead: */
+/* body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] {
+    transform: translateX(calc(-50% + 115px)); 
+}
+*/
+
 
 @media (max-width: 1250px) {
   body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before {
