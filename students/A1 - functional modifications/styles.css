@@ -160,7 +160,6 @@ body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow
     width: 32px !important;       
     margin-left: 0 !important;    
     left: 50%;                    
-   transform: translateX(calc(-50% + 115px));
 }
 
 
