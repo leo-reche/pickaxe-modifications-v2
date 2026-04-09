@@ -165,6 +165,13 @@ function stripSnippetHtml(text) {
     return wrap.innerText.trim();
 }
 
+function abortCurrentStreamOnly() {
+    if (currentAbortController) {
+        currentAbortController.abort();
+        currentAbortController = null;
+    }
+}
+
 function stopStream() {
     pendingStopRequest = true;
     blockNextStreamRequest = true;
