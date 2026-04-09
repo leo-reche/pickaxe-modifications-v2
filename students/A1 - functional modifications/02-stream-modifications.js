@@ -134,7 +134,13 @@ window.fetch = async function(...args) {
                       setTimeout(() => {
                           syncConversation(responseId, formId, studioUserId, pastedContent, url);
                       }, 2000);
-                  } catch (_) {}
+                  } catch (_) {
+
+                    currentAbortController = null;
+                    pendingStopRequest = false;
+                    blockNextStreamRequest = false;
+                    stopButtonOff(handleClick, toggleHover);
+                  }
               })();
 
               return response;
