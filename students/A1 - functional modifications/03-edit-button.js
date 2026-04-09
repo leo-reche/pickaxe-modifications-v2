@@ -56,9 +56,9 @@
     editButton.addEventListener('click', function () {
         // A. Handle Stream Interruption
         // If a message is still generating, stop it before we try to edit
-        const messageStillGenerating = typeof currentAbortController !== 'undefined' && currentAbortController !== null;
+        const messageStillGenerating = typeof currentAbortController !== "undefined" && currentAbortController !== null;
         if (messageStillGenerating) {
-            stopStream();
+            abortCurrentStreamOnly();
         }
 
         // B. Data Extraction
